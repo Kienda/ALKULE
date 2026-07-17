@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ring: #2b3a8f;
+  --font-display: "Bricolage Grotesque";
+  --font-body: "Inter";
+  --font-adlam: "Noto Sans Adlam";
+}
+
+/* Use logical properties everywhere so RTL locales mirror for free. */
+* {
+  margin-inline: revert-layer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ADLaM text always gets the ADLaM-capable font and RTL direction. */
+.adlam {
+  font-family: var(--font-adlam), sans-serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
