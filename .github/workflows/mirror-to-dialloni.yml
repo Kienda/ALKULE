@@ -1,0 +1,31 @@
+name: Mirror main to Dialloni/ALKULE
+
+# Keeps the deploy repo (Dialloni/ALKULE) in sync with this repo's main so
+# Railway — which watches Dialloni/ALKULE — auto-deploys on every merge here.
+# Requires repo secret MIRROR_TOKEN: a PAT with Contents:write on Dialloni/ALKULE.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push main to Dialloni/ALKULE
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          if [ -z "$MIRROR_TOKEN" ]; then
+            echo "MIRROR_TOKEN secret is not set — add it in repo Settings → Secrets." >&2
+            exit 1
+          fi
+          git push --force \
+            "https://x-access-token:${MIRROR_TOKEN}@github.com/Dialloni/ALKULE.git" \
+            HEAD:main
