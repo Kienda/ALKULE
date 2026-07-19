@@ -6,3 +6,6 @@ build/
 .DS_Store
 *.tsbuildinfo
 next-env.d.ts
+
+# ruflo runtime state
+.claude-flow/
