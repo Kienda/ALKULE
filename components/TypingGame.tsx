@@ -10,9 +10,10 @@
  * sound → glyph rounds (audio), and word-level drills.
  */
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ADLAM_LETTERS, type AdlamLetter } from "@/data/adlam";
 import { applyAnswer, newRecord, type MasteryRecord } from "@/lib/srs";
+import { loadMastery, saveMastery } from "@/lib/masteryStore";
 import { useLocale } from "@/lib/LocaleProvider";
 
 const OPTION_COUNT = 6;
@@ -37,11 +38,26 @@ function makeRound(): { target: AdlamLetter; options: AdlamLetter[] } {
 
 export default function TypingGame() {
   const { t } = useLocale();
-  const [round, setRound] = useState(makeRound);
+  // Round starts null and is created after mount: makeRound() is random, so
+  // running it during SSR would mismatch the client render (hydration error).
+  const [round, setRound] = useState<ReturnType<typeof makeRound> | null>(null);
+
+  useEffect(() => {
+    setRound(makeRound());
+  }, []);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [mastery, setMastery] = useState<Record<number, MasteryRecord>>({});
+
+  // Hydrate from localStorage after mount (SSR renders with empty mastery).
+  useEffect(() => {
+    setMastery((m) => ({ ...loadMastery(), ...m }));
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(mastery).length > 0) saveMastery(mastery);
+  }, [mastery]);
 
   const weakest = useMemo(() => {
     const recs = Object.values(mastery).filter((r) => r.wrong > 0);
@@ -52,6 +68,7 @@ export default function TypingGame() {
   }, [mastery]);
 
   function answer(letter: AdlamLetter) {
+    if (!round) return;
     const wasCorrect = letter.index === round.target.index;
     setFeedback(wasCorrect ? "correct" : "wrong");
     setScore((s) => s + (wasCorrect ? 10 : 0));
@@ -80,11 +97,15 @@ export default function TypingGame() {
       <p className="text-sm uppercase tracking-wide text-ink/60">
         {t.typing.prompt}
       </p>
-      <p className="mt-2 font-display text-4xl font-bold text-indigo-brand">
-        {round.target.name}
-        <span className="ms-2 text-2xl font-normal text-ink/50">
-          ({round.target.roman})
-        </span>
+      <p className="mt-2 h-10 font-display text-4xl font-bold text-indigo-brand">
+        {round && (
+          <>
+            {round.target.name}
+            <span className="ms-2 text-2xl font-normal text-ink/50">
+              ({round.target.roman})
+            </span>
+          </>
+        )}
       </p>
 
       <div
@@ -92,7 +113,7 @@ export default function TypingGame() {
           feedback === "wrong" ? "animate-pulse" : ""
         }`}
       >
-        {round.options.map((letter) => (
+        {(round?.options ?? []).map((letter) => (
           <button
             key={letter.index}
             onClick={() => answer(letter)}
