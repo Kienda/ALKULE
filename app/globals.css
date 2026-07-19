@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --ring: #2b3a8f;
-  --font-display: "Bricolage Grotesque";
-  --font-body: "Inter";
+  --ring: #3f51b5;
+  /* Design system: Hanken Grotesk for display + body (Material 3 handoff);
+     Noto Sans Adlam stays the only ADLaM-capable face. */
+  --font-display: "Hanken Grotesk";
+  --font-body: "Hanken Grotesk";
   --font-adlam: "Noto Sans Adlam";
 }
 
@@ -28,6 +30,29 @@ html {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Card lift on hover (from the ADLaM Learner design). */
+.tonal-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tonal-card:hover {
+  box-shadow: 0 4px 20px rgba(36, 56, 156, 0.08);
+  transform: translateY(-2px);
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
 /* ADLaM text always gets the ADLaM-capable font and RTL direction. */
