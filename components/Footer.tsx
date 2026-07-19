@@ -5,7 +5,6 @@ import { useLocale } from "@/lib/LocaleProvider";
 const RESOURCES = [
   { label: "Tabalde", href: "https://tabalde.com" },
   { label: "Akweeyo", href: "https://www.akweeyo.com" },
-  { label: "Ankataa", href: "https://www.ankataa.com/videos" },
   {
     label: "Endangered Alphabets — ADLaM",
     href: "https://www.endangeredalphabets.net/alphabets/adlam/",

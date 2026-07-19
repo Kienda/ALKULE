@@ -101,4 +101,4 @@ directory map.
 
 ## Community resources
 
-Tabalde · Akweeyo · Ankataa · N'Ko Learner · N'Ko Institute · Endangered Alphabets (ADLaM) — linked in the site footer as the wider ecosystem this project serves.
+Tabalde · Akweeyo · Endangered Alphabets (ADLaM) — linked in the site footer as the wider ecosystem this project serves.
