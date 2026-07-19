@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import { useLocale } from "@/lib/LocaleProvider";
+import { useProfile } from "@/lib/ProfileProvider";
 import { ALKULE_ADLAM } from "@/data/adlam";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const { t } = useLocale();
+  const { profile, ready, signOut } = useProfile();
 
   const nav = [
-    { href: "/learn/typing", label: t.nav.learn },
-    { href: "/courses", label: t.nav.courses },
+    { href: "/learn/lessons", label: t.nav.learn },
+    { href: "/culture", label: t.nav.culture },
     { href: "/library", label: t.nav.library },
     { href: "/community", label: t.nav.community },
   ];
@@ -43,18 +45,44 @@ export default function Header() {
 
         <div className="ms-auto flex items-center gap-3">
           <LanguageSwitcher />
-          <Link
-            href="/login"
-            className="hidden text-sm font-medium text-ink/70 hover:text-indigo-brand sm:block"
-          >
-            {t.cta.login}
-          </Link>
-          <Link
-            href="/learn/typing"
-            className="rounded-full bg-indigo-brand px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-deep"
-          >
-            {t.cta.start}
-          </Link>
+          {ready && profile ? (
+            <>
+              <Link
+                href="/dashboard"
+                className="hidden text-sm font-medium text-ink/80 hover:text-indigo-brand sm:block"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={signOut}
+                className="hidden text-sm font-medium text-ink/60 hover:text-indigo-brand sm:block"
+              >
+                Log out
+              </button>
+              <Link
+                href="/dashboard"
+                title={profile.name}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-brand text-sm font-bold text-white"
+              >
+                {profile.name.charAt(0).toUpperCase()}
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="hidden text-sm font-medium text-ink/70 hover:text-indigo-brand sm:block"
+              >
+                {t.cta.login}
+              </Link>
+              <Link
+                href="/login"
+                className="rounded-full bg-indigo-brand px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-deep"
+              >
+                {t.cta.start}
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
