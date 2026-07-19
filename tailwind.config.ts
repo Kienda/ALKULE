@@ -5,10 +5,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        indigo: { deep: "#151C3F", brand: "#2B3A8F", soft: "#E7EAF7" },
-        brass: "#C79A3B",
-        ink: "#1B1F2E",
-        paper: "#FAF8F4",
+        alkule: { midnight: "#1E1240", deep: "#1A0D3B", teal: "#1BAFCA", cyan: "#48CCE0" },
+        indigo: { deep: "#1A0D3B", brand: "#1E1240", soft: "#E9E7EF" },
+        brass: "#A56B12", ink: "#171426", paper: "#F5F5F7", muted: "#6E6979", border: "#E5E3EA",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],

@@ -1,16 +1,1 @@
-"use client";
-
-import TypingGame from "@/components/TypingGame";
-import { useLocale } from "@/lib/LocaleProvider";
-
-export default function TypingPage() {
-  const { t } = useLocale();
-  return (
-    <div className="py-6">
-      <h1 className="text-center font-display text-2xl font-bold text-ink">
-        {t.typing.heading}
-      </h1>
-      <TypingGame />
-    </div>
-  );
-}
+import TypingGame from"@/components/TypingGame";export const metadata={title:"Free ADLaM typing lab"};export default function TypingPage(){return <div><div className="bg-indigo-deep py-10 text-center text-white"><p className="eyebrow text-alkule-cyan">Free · no login required</p><h1 className="mt-2 text-3xl font-bold">ADLaM Typing Laboratory</h1><p className="mt-2 text-white/70">Practice recognition with predictable, keyboard-accessible rounds.</p></div><TypingGame/></div>}

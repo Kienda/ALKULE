@@ -44,6 +44,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const setLocale = (l: Locale) => {
     setLocaleState(l);
     window.localStorage.setItem(STORAGE_KEY, l);
+    document.cookie = `alkule.locale=${encodeURIComponent(l)}; path=/; max-age=31536000; samesite=lax`;
   };
 
   const value: LocaleContextValue = {

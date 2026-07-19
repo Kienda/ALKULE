@@ -1,43 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --ring: #2b3a8f;
-  --font-display: "Bricolage Grotesque";
-  --font-body: "Inter";
-  --font-adlam: "Noto Sans Adlam";
-}
-
-/* Use logical properties everywhere so RTL locales mirror for free. */
-* {
-  margin-inline: revert-layer;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* ADLaM text always gets the ADLaM-capable font and RTL direction. */
-.adlam {
-  font-family: var(--font-adlam), sans-serif;
-  direction: rtl;
-  unicode-bidi: isolate;
-}
-
-:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
+:root{--alkule-midnight:#1E1240;--alkule-deep:#1A0D3B;--alkule-teal:#1BAFCA;--alkule-cyan:#48CCE0;--alkule-off-white:#F5F5F7;--alkule-muted:#6E6979;--alkule-ink:#171426;--alkule-surface:#fff;--alkule-border:#E5E3EA;--ring:#1BAFCA;--font-display:Arial;--font-body:Arial;--font-adlam:"Noto Sans Adlam","Segoe UI Historic",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--alkule-off-white);color:var(--alkule-ink)}a,button,input,select,textarea{transition:color .18s,background-color .18s,border-color .18s,transform .18s}button,input,select,textarea{font:inherit}:focus-visible{outline:3px solid var(--ring);outline-offset:3px}.adlam{font-family:var(--font-adlam);direction:rtl;unicode-bidi:isolate;line-height:1.7}.container-page{width:min(100% - 2rem,76rem);margin-inline:auto}.card{border:1px solid var(--alkule-border);border-radius:1rem;background:#fff}.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#117f92}.section-title{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;letter-spacing:-.03em}.btn-primary{display:inline-flex;min-height:44px;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(135deg,#0B9DBB,#48CCE0);padding:.7rem 1.25rem;font-weight:700;color:#081c25}.btn-secondary{display:inline-flex;min-height:44px;align-items:center;justify-content:center;border:1px solid currentColor;border-radius:999px;padding:.65rem 1.2rem;font-weight:700}.skip-link{position:fixed;inset-block-start:.5rem;inset-inline-start:.5rem;z-index:100;transform:translateY(-150%);background:#fff;padding:.75rem 1rem}.skip-link:focus{transform:none}@media(max-width:767px){body{padding-bottom:4.5rem}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

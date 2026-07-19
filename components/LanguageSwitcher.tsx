@@ -12,7 +12,8 @@ export default function LanguageSwitcher() {
       <select
         value={locale}
         onChange={(e) => setLocale(e.target.value as Locale)}
-        className="rounded-md border border-indigo-soft bg-white px-2 py-1.5 text-sm text-ink"
+        aria-label="Language and script"
+        className="min-h-11 max-w-28 rounded-md border border-white/30 bg-indigo-deep px-2 text-sm text-white"
       >
         {LOCALES.map((l) => (
           <option key={l.code} value={l.code}>
