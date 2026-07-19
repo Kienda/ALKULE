@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ff"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ADLaM Learner - Vowel Lesson</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1a1c1e",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f0f0f3",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9fc",
+                        "surface-container-high": "#e8e8ea",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#293ca0",
+                        "inverse-surface": "#2f3133",
+                        "on-primary-container": "#cacfff",
+                        "surface-container-low": "#f3f3f6",
+                        "outline-variant": "#c5c5d4",
+                        "on-tertiary-fixed": "#2c1600",
+                        "on-secondary-fixed-variant": "#434750",
+                        "on-primary-fixed": "#00105c",
+                        "secondary-container": "#e0e2ee",
+                        "primary-fixed-dim": "#bac3ff",
+                        "secondary-fixed": "#e0e2ee",
+                        "tertiary-fixed": "#ffdcbe",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#4355b9",
+                        "primary-fixed": "#dee0ff",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#643900",
+                        "on-secondary-container": "#61646e",
+                        "surface-bright": "#f9f9fc",
+                        "surface-dim": "#dadadc",
+                        "primary": "#24389c",
+                        "inverse-primary": "#bac3ff",
+                        "secondary": "#5b5e68",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-tertiary-container": "#ffc893",
+                        "background": "#f9f9fc",
+                        "tertiary-fixed-dim": "#ffb870",
+                        "tertiary-container": "#854d00",
+                        "on-secondary-fixed": "#181b24",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c4c6d2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#3f51b5",
+                        "surface-container": "#eeeef0",
+                        "on-background": "#1a1c1e",
+                        "surface-variant": "#e2e2e5",
+                        "outline": "#757684",
+                        "on-surface-variant": "#454652"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "adlam-display": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .rtl-mirror {
+            transform: scaleX(-1);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(117, 118, 132, 0.2);
+        }
+        .vowel-card:hover {
+            border-color: #24389c;
+            transform: translateY(-2px);
+            transition: all 0.2s ease;
+        }
+        /* Custom scrollbar for lesson list */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #eeeef0;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #4355b9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="bg-surface border-b border-outline-variant w-full top-0 sticky z-40">
+<nav class="flex flex-row justify-between items-center px-margin-desktop h-16 w-full max-w-max-width mx-auto">
+<!-- Leading: Menu/Back -->
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">ADLaM Learner</h1>
+</div>
+<!-- Center: Progress Indicator -->
+<div class="hidden md:flex flex-col items-center flex-1 max-w-md px-12">
+<div class="flex justify-between w-full mb-1">
+<span class="font-label-md text-label-md text-secondary">Lesson 3: The Vowels</span>
+<span class="font-label-md text-label-md text-primary">65% Complete</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Trailing: User Profile -->
+<div class="flex items-center gap-4">
+<div class="text-left hidden lg:block">
+<p class="font-label-md text-label-md text-on-surface leading-none">Ibrahima</p>
+<p class="text-[10px] text-secondary font-label-md">Level 12</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-container bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a West African man in his late 20s, smiling warmly, wearing a modern indigo-colored shirt. The lighting is soft and cinematic with a neutral grey studio background. High-end professional photography style, consistent with a clean corporate educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdBWLIkDq0S4_MvQs89MfPz0YBnMUfoHew1fDWJ3n1rE8Q2X6jGQbmEtlZIstoa0nKaLz1cHb1_22kBywum4NJAiRLC-T8ICqQL-5iayMubZwjwuE3cH1yrmmvnD1V-06MlcKvsWKx_7iw7_OePCr-v83_ZVMyuzADHGwdVvlTfnjihRZutDdI43TKTSt1k2Ku_rul4MdKaFhiJfGb-gyrlNcsQE3L5Q1EayehuMFMU6ss5u2pOgIfmQHXCav_FhK73l6TvLPHIa6z"/>
+</div>
+</div>
+</nav>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 max-w-max-width mx-auto w-full px-margin-desktop py-base flex flex-col lg:flex-row gap-gutter overflow-hidden">
+<!-- Left Pane: Vowel Reference & Visuals (Bento Style) -->
+<section class="lg:w-2/5 flex flex-col gap-6 py-6">
+<div class="space-y-2">
+<h2 class="font-headline-lg text-headline-lg text-primary">Jandeeji (Vowels)</h2>
+<p class="text-on-surface-variant font-body-lg">Explore the primary vowels of the ADLaM script. Each vowel has a distinct sound essential for Fulfulde.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Large Visual Focus Card -->
+<div class="col-span-2 aspect-video rounded-xl bg-surface-container-lowest border border-outline-variant overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="A beautiful, minimalist digital illustration showing a clean workspace with an open notebook featuring ADLaM calligraphy. Soft natural morning light falls across a mahogany desk. The mood is academic, peaceful, and culturally rich, using a palette of deep indigo, cream, and warm wood tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDes9DRpTLOGnIgOlhCOI3PIHOwG-DL5ldbE_YjlLRoEU7rJSMoVIAm3olkzuhe18JqeVJI2jSXo7ridgmWu9XkyS-6nFA0zIRjeEUsG_bKGClT5xVmyp7cs4kHJY2P5_EpQYy6_ZaWaou3AnDy4Yv_IAXeDOc_qwtL3heVoP1-0vxGAFNI83PNsvpdvw8vK4dVv4vPAPjGU6qE8Pu3bQI1sytXMpWR6ylhvxg0kl8bokunWeWmjbauRWRdPIngu-YHOeNILuN4pXXL"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+<span class="text-white font-headline-md text-headline-md">Visual Guide: A - E - I - O - U</span>
+</div>
+</div>
+<!-- ADLaM Script Vowel Grid -->
+<div class="p-6 rounded-xl border border-outline-variant bg-surface-container-low flex flex-col items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="font-adlam-display text-adlam-display text-primary mb-2">𞤀</span>
+<span class="font-label-md text-label-md text-secondary">A (Alif)</span>
+</div>
+<div class="p-6 rounded-xl border border-outline-variant bg-surface-container-low flex flex-col items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="font-adlam-display text-adlam-display text-primary mb-2">𞤉</span>
+<span class="font-label-md text-label-md text-secondary">E (E)</span>
+</div>
+<div class="p-6 rounded-xl border border-outline-variant bg-surface-container-low flex flex-col items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="font-adlam-display text-adlam-display text-primary mb-2">𞤋</span>
+<span class="font-label-md text-label-md text-secondary">I (I)</span>
+</div>
+<div class="p-6 rounded-xl border border-outline-variant bg-surface-container-low flex flex-col items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="font-adlam-display text-adlam-display text-primary mb-2">𞤌</span>
+<span class="font-label-md text-label-md text-secondary">O (O)</span>
+</div>
+</div>
+<!-- Mini Tip Card -->
+<div class="p-4 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">lightbulb</span>
+<div>
+<h4 class="font-bold">Learner Tip</h4>
+<p class="text-sm opacity-80">ADLaM vowels are always written. Unlike some other scripts, vowels are never omitted in standard Fulfulde text.</p>
+</div>
+</div>
+</section>
+<!-- Right Pane: Detailed Pronunciation Cards (Scrollable) -->
+<section class="lg:w-3/5 py-6 flex flex-col overflow-hidden">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Pronunciation Lab</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-[12px]">Beginner</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-secondary font-label-md text-[12px]">5 Modules</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scroll space-y-4 pr-1">
+<!-- Vowel Card A -->
+<div class="vowel-card p-6 bg-surface-container-lowest border border-outline-variant rounded-xl flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-primary-fixed flex items-center justify-center border-2 border-primary">
+<span class="font-adlam-display text-adlam-display text-primary">𞤀</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline-md text-headline-md leading-none text-on-surface">A</h4>
+<p class="text-secondary font-label-md">/a/ as in 'Father'</p>
+</div>
+<button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="p-3 bg-surface-container rounded-lg border border-transparent hover:border-primary-container">
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">Fulfulde Word</p>
+<p class="font-adlam-display text-2xl text-on-surface">𞤀𞤲𞤲𞤢</p>
+</div>
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">Meaning</p>
+<p class="font-body-md">Grandmother</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Vowel Card E -->
+<div class="vowel-card p-6 bg-surface-container-lowest border border-outline-variant rounded-xl flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-secondary-fixed flex items-center justify-center border-2 border-secondary">
+<span class="font-adlam-display text-adlam-display text-secondary">𞤉</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline-md text-headline-md leading-none text-on-surface">E</h4>
+<p class="text-secondary font-label-md">/e/ as in 'Bed'</p>
+</div>
+<button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">Fulfulde Word</p>
+<p class="font-adlam-display text-2xl text-on-surface">𞤉𞤤𞥆𞤮</p>
+</div>
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">Meaning</p>
+<p class="font-body-md">Hand palm</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Vowel Card I -->
+<div class="vowel-card p-6 bg-surface-container-lowest border border-outline-variant rounded-xl flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-primary-fixed flex items-center justify-center border-2 border-primary">
+<span class="font-adlam-display text-adlam-display text-primary">𞤋</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline-md text-headline-md leading-none text-on-surface">I</h4>
+<p class="text-secondary font-label-md">/i/ as in 'Machine'</p>
+</div>
+<button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">Fulfulde Word</p>
+<p class="font-adlam-display text-2xl text-on-surface">𞤋𞤲𞤢</p>
+</div>
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">Meaning</p>
+<p class="font-body-md">He/She/It</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Vowel Card O -->
+<div class="vowel-card p-6 bg-surface-container-lowest border border-outline-variant rounded-xl flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-secondary-fixed flex items-center justify-center border-2 border-secondary">
+<span class="font-adlam-display text-adlam-display text-secondary">𞤌</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline-md text-headline-md leading-none text-on-surface">O</h4>
+<p class="text-secondary font-label-md">/o/ as in 'More'</p>
+</div>
+<button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">Fulfulde Word</p>
+<p class="font-adlam-display text-2xl text-on-surface">𞤌𞤪𞤥𞤮</p>
+</div>
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">Meaning</p>
+<p class="font-body-md">Honey</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Controls -->
+<footer class="bg-surface border-t border-outline-variant py-4 px-margin-desktop sticky bottom-0 z-40">
+<div class="max-w-max-width mx-auto flex flex-row-reverse justify-between items-center">
+<div class="flex gap-4 flex-row-reverse">
+<button class="px-8 py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary-container shadow-md transition-all active:scale-95 flex items-center gap-2">
+                    Next Lesson
+                    <span class="material-symbols-outlined rtl-mirror">arrow_forward</span>
+</button>
+<button class="px-6 py-3 border border-outline text-on-surface-variant rounded-xl font-bold hover:bg-surface-container transition-all flex items-center gap-2">
+<span class="material-symbols-outlined rtl-mirror">arrow_back</span>
+                    Previous
+                </button>
+</div>
+<div class="hidden md:flex gap-6">
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">save</span>
+<span class="font-label-md text-label-md">Save Draft</span>
+</button>
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Get Help</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- Bottom Mobile Nav (Shell mandated BottomNavBar logic) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex flex-row-reverse justify-around items-center py-2 px-2 bg-surface border-t border-outline-variant z-50">
+<div class="flex flex-col items-center justify-center text-secondary px-4 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="text-label-md font-label-md">Lessons</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary px-4 py-1">
+<span class="material-symbols-outlined">keyboard</span>
+<span class="text-label-md font-label-md">Typing</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary px-4 py-1">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-label-md font-label-md">Resources</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions: Play button ripple effect
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                let d = Math.max(this.clientWidth, this.clientHeight);
+                ripple.style.width = ripple.style.height = d + 'px';
+                ripple.style.left = e.clientX - this.offsetLeft - d / 2 + 'px';
+                ripple.style.top = e.clientY - this.offsetTop - d / 2 + 'px';
+                ripple.classList.add('animate-ripple');
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+<style>
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        .animate-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+    </style>
+</body></html>

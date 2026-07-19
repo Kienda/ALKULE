@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ADLaM Learner - Vowels Lesson</title>
+<!-- Google Fonts: Hanken Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#434750",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e2e2e5",
+                    "surface-container-high": "#e8e8ea",
+                    "secondary-container": "#e0e2ee",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f9f9fc",
+                    "on-primary-fixed": "#00105c",
+                    "secondary-fixed-dim": "#c4c6d2",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f0f0f3",
+                    "surface-variant": "#e2e2e5",
+                    "on-primary-fixed-variant": "#293ca0",
+                    "secondary": "#5b5e68",
+                    "error": "#ba1a1a",
+                    "tertiary": "#643900",
+                    "surface-dim": "#dadadc",
+                    "primary-fixed-dim": "#bac3ff",
+                    "tertiary-container": "#854d00",
+                    "outline": "#757684",
+                    "on-secondary-fixed": "#181b24",
+                    "surface-container-low": "#f3f3f6",
+                    "primary": "#24389c",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eeeef0",
+                    "on-primary-container": "#cacfff",
+                    "background": "#f9f9fc",
+                    "on-secondary-container": "#61646e",
+                    "on-tertiary-fixed": "#2c1600",
+                    "tertiary-fixed": "#ffdcbe",
+                    "on-background": "#1a1c1e",
+                    "primary-container": "#3f51b5",
+                    "outline-variant": "#c5c5d4",
+                    "inverse-primary": "#bac3ff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3133",
+                    "tertiary-fixed-dim": "#ffb870",
+                    "secondary-fixed": "#e0e2ee",
+                    "on-tertiary-container": "#ffc893",
+                    "on-surface": "#1a1c1e",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "primary-fixed": "#dee0ff",
+                    "surface": "#f9f9fc",
+                    "on-surface-variant": "#454652",
+                    "surface-tint": "#4355b9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "max-width": "1280px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "adlam-display": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f9f9fc;
+            color: #1a1c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .adlam-script {
+            font-family: 'Hanken Grotesk', sans-serif;
+            direction: rtl;
+        }
+        /* Custom Scrollbar for Lessons Nav */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c5c5d4;
+            border-radius: 10px;
+        }
+        /* Paper elevation style from guidance */
+        .paper-border {
+            border: 1px solid #e2e2e5;
+        }
+        .ambient-lift {
+            box-shadow: 0px 4px 20px rgba(36, 56, 156, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 bg-surface border-b border-outline-variant transition-colors duration-200 z-50">
+<div class="flex flex-row-reverse justify-between items-center px-4 md:px-16 py-4 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">ADLaM Learner</span>
+</div>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary font-body-md font-semibold" href="#">Lessons</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Typing</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container rounded-full transition-colors">search</button>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a student in a modern workspace, soft natural lighting, high-quality digital photography, corporate yet friendly aesthetic, clean background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXLh3GE_Uh6MgkrzC98WASmnQ1XuFubBAqjtYNjWG0CjJDL0Smp39_z1AF8AvscMJ0qWLgOVFWLuaM7IAhbv70sjgZMgJUqo88y-aEQTPMRuSnAr7ixnTZVxpJALCHlflfJbBZBKkpgerho1LUplnGKPzp5nYROrR5BDANQcSQPMiPtD3ktHqaRhIoHcmkqOSjcSBjJD1bwdywaLBHJtlB8S6uwDB2YxYIPWsv9GuRvTaRCL20JAIxipYzjurveqx5-0DvVHQL8IQH"/>
+</div>
+<button class="md:hidden material-symbols-outlined text-primary">menu</button>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col w-72 bg-surface-container-low border-l border-outline-variant h-[calc(100vh-76px)] overflow-y-auto custom-scrollbar">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">school</span>
+<h2 class="font-headline-md text-headline-md text-primary">Learn ADLaM</h2>
+</div>
+<p class="text-on-surface-variant font-body-md mb-8">Complete tutorial series for mastering ADLaM script</p>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="font-body-md">Main</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="font-body-md">Introduction</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="font-body-md">ADLaM Writing System</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="font-body-md">ADLaM Alphabet</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-container text-on-primary-container font-semibold ambient-lift" href="#">
+<span class="material-symbols-outlined text-sm">radio_button_checked</span>
+<span class="font-body-md">Vowels</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">circle</span>
+<span class="font-body-md">Consonants</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">circle</span>
+<span class="font-body-md">The N' Character</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">circle</span>
+<span class="font-body-md">Numerals</span>
+</a>
+</nav>
+<div class="mt-12 pt-8 border-t border-outline-variant">
+<h3 class="font-label-md text-label-md text-primary mb-4">PROGRESS</h3>
+<div class="relative w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute right-0 top-0 h-full bg-primary transition-all duration-1000" style="width: 45%;"></div>
+</div>
+<p class="mt-2 text-on-surface-variant font-body-md text-sm">45% complete</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-background relative custom-scrollbar">
+<!-- Content Header -->
+<div class="w-full bg-primary h-48 relative overflow-hidden flex items-end px-gutter md:px-margin-desktop pb-8">
+<!-- Abstract Shader Pattern -->
+
+<div class="relative z-10 w-full flex flex-col gap-2">
+<nav class="flex gap-2 text-primary-fixed-dim font-label-md text-label-md items-center mb-2">
+<a class="hover:underline" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_left</span>
+<a class="hover:underline" href="#">Learn ADLaM</a>
+<span class="material-symbols-outlined text-xs">chevron_left</span>
+<span class="text-white">Vowels</span>
+</nav>
+<h1 class="font-headline-lg text-headline-lg text-white">ADLaM Vowels (𞤐𞤢𞤧𞤢𞤪𞤤𞤭)</h1>
+<p class="text-primary-fixed-dim font-body-lg">Click on any vowel to hear its pronunciation and learn its usage.</p>
+</div>
+</div>
+<!-- Bento Lesson Content -->
+<div class="p-gutter md:p-margin-desktop max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Vowel Card: A -->
+<div class="group relative flex flex-col p-6 rounded-2xl bg-surface paper-border ambient-lift hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest">Vowel 01</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">volume_up</span>
+</div>
+<div class="flex justify-center items-center py-8">
+<span class="adlam-script text-[80px] leading-none text-primary group-hover:scale-110 transition-transform duration-300">𞤢</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface">A</h3>
+<p class="font-body-md text-on-surface-variant">as in "father"</p>
+</div>
+<div class="absolute bottom-0 right-0 left-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right"></div>
+</div>
+<!-- Vowel Card: E -->
+<div class="group relative flex flex-col p-6 rounded-2xl bg-surface paper-border ambient-lift hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest">Vowel 02</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">volume_up</span>
+</div>
+<div class="flex justify-center items-center py-8">
+<span class="adlam-script text-[80px] leading-none text-primary group-hover:scale-110 transition-transform duration-300">𞤫</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface">E</h3>
+<p class="font-body-md text-on-surface-variant">as in "bed"</p>
+</div>
+<div class="absolute bottom-0 right-0 left-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right"></div>
+</div>
+<!-- Vowel Card: I -->
+<div class="group relative flex flex-col p-6 rounded-2xl bg-surface paper-border ambient-lift hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest">Vowel 03</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">volume_up</span>
+</div>
+<div class="flex justify-center items-center py-8">
+<span class="adlam-script text-[80px] leading-none text-primary group-hover:scale-110 transition-transform duration-300">𞤭</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface">I</h3>
+<p class="font-body-md text-on-surface-variant">as in "machine"</p>
+</div>
+<div class="absolute bottom-0 right-0 left-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right"></div>
+</div>
+<!-- Vowel Card: O -->
+<div class="group relative flex flex-col p-6 rounded-2xl bg-surface paper-border ambient-lift hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest">Vowel 04</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">volume_up</span>
+</div>
+<div class="flex justify-center items-center py-8">
+<span class="adlam-script text-[80px] leading-none text-primary group-hover:scale-110 transition-transform duration-300">𞤮</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface">O</h3>
+<p class="font-body-md text-on-surface-variant">as in "boat"</p>
+</div>
+<div class="absolute bottom-0 right-0 left-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right"></div>
+</div>
+<!-- Vowel Card: U -->
+<div class="group relative flex flex-col p-6 rounded-2xl bg-surface paper-border ambient-lift hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest">Vowel 05</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">volume_up</span>
+</div>
+<div class="flex justify-center items-center py-8">
+<span class="adlam-script text-[80px] leading-none text-primary group-hover:scale-110 transition-transform duration-300">𞤵</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface">U</h3>
+<p class="font-body-md text-on-surface-variant">as in "boot"</p>
+</div>
+<div class="absolute bottom-0 right-0 left-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right"></div>
+</div>
+<!-- Featured Card (Asymmetric) -->
+<div class="md:col-span-2 lg:col-span-3 flex flex-col md:flex-row gap-6 p-8 rounded-2xl bg-primary-container text-on-primary-container ambient-lift overflow-hidden relative">
+<!-- Decorative SVG Background pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+<div class="flex-1 relative z-10">
+<h3 class="font-headline-md text-headline-md mb-4">Did you know?</h3>
+<p class="font-body-lg mb-6">The ADLaM script was created in the late 1980s by two teenage brothers, Ibrahima and Abdoulaye Barry, to preserve the Fulfulde language. Vowels play a crucial role in maintaining the rhythmic flow of the spoken language.</p>
+<button class="bg-white text-primary px-6 py-3 rounded-xl font-semibold hover:bg-surface-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">auto_stories</span>
+                                Learn History
+                            </button>
+</div>
+<div class="w-full md:w-64 h-48 md:h-auto rounded-xl overflow-hidden shadow-xl">
+<img class="w-full h-full object-cover" data-alt="Close-up artistic shot of hand-written ADLaM calligraphy on aged parchment, highlighting the fluid curves and unique shapes of the vowels, warm ambient lighting, scholarly academic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfWbmmiDcFK32OqZQvVaYWzsLT5erWCb22RrgzTnso09bXzYMvu1ENFsV5MNBB42fx-4ToCHooZdBnI8n3F_qXQRggC70zFSbWypuCFIkob6qmFPrSkyFHpYW8UGUAU09uyUcIN3lT5ORt-cjvj_X5f5dqw3KyIj5EEaCvhoBdUo3Sn4iu_9kAYAZiNAbkaaYqoVd3qqmI1TQ2AcBEPuObulAtiiYoHcXGirxpgrpNFplKB7d7oNJByQnul9U19c4hhP4UVMVknKqW"/>
+</div>
+</div>
+<!-- Small Info Chip -->
+<div class="flex flex-col p-6 rounded-2xl bg-secondary-fixed text-on-secondary-fixed paper-border ambient-lift">
+<span class="material-symbols-outlined text-primary mb-4">info</span>
+<p class="font-body-md">In ADLaM, vowels are written first, and consonants follow them in a right-to-left flow.</p>
+</div>
+</div>
+<!-- Interactive Exercise Section -->
+<div class="mt-16 bg-surface-container-low rounded-3xl p-8 md:p-12 paper-border">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Practice Writing</h2>
+<p class="font-body-lg text-on-surface-variant max-w-xl">Try to trace the character for 'A' (𞤢) to familiarize yourself with the stroke order and direction.</p>
+</div>
+<div class="w-full max-w-xs aspect-square bg-white rounded-2xl paper-border ambient-lift flex items-center justify-center relative group cursor-crosshair">
+<span class="adlam-script text-[140px] opacity-10">𞤢</span>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-label-md text-label-md text-primary opacity-0 group-hover:opacity-100 transition-opacity">Trace here</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer for Desktop -->
+<footer class="mt-12 p-8 border-t border-outline-variant bg-surface flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant font-label-md">
+<p>© 2024 ADLaM Institute of America. All Rights Reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex flex-row-reverse justify-around items-center py-2 px-2 bg-surface border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-xs">Lessons</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">keyboard</span>
+<span class="font-label-md text-xs">Typing</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-label-md text-xs">Library</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for audio feedback simulation
+        document.querySelectorAll('.cursor-pointer').forEach(card => {
+            card.addEventListener('click', () => {
+                const vowel = card.querySelector('.adlam-script').innerText;
+                console.log(`Playing audio for: ${vowel}`);
+                
+                // Visual feedback
+                card.classList.add('scale-95');
+                setTimeout(() => card.classList.remove('scale-95'), 150);
+                
+                // Success toast simulation
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-24 right-8 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-lg font-body-md shadow-lg z-[100] animate-bounce';
+                toast.innerText = `Pronunciation: ${vowel}`;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2000);
+            });
+        });
+    </script>
+</body></html>

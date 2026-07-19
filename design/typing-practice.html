@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ff"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ADLaM Learner - Word Typing Practice</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary: #24389c;
+        }
+        body {
+            font-family: 'Hanken+Grotesk', sans-serif;
+            background-color: #f9f9fc;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .typing-cursor {
+            border-left: 2px solid var(--primary);
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5c5d4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #757684;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1a1c1e",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f0f0f3",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface": "#f9f9fc",
+                    "surface-container-high": "#e8e8ea",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#293ca0",
+                    "inverse-surface": "#2f3133",
+                    "on-primary-container": "#cacfff",
+                    "surface-container-low": "#f3f3f6",
+                    "outline-variant": "#c5c5d4",
+                    "on-tertiary-fixed": "#2c1600",
+                    "on-secondary-fixed-variant": "#434750",
+                    "on-primary-fixed": "#00105c",
+                    "secondary-container": "#e0e2ee",
+                    "primary-fixed-dim": "#bac3ff",
+                    "secondary-fixed": "#e0e2ee",
+                    "tertiary-fixed": "#ffdcbe",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#4355b9",
+                    "primary-fixed": "#dee0ff",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#643900",
+                    "on-secondary-container": "#61646e",
+                    "surface-bright": "#f9f9fc",
+                    "surface-dim": "#dadadc",
+                    "primary": "#24389c",
+                    "inverse-primary": "#bac3ff",
+                    "secondary": "#5b5e68",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "surface-container-highest": "#e2e2e5",
+                    "on-tertiary-container": "#ffc893",
+                    "background": "#f9f9fc",
+                    "tertiary-fixed-dim": "#ffb870",
+                    "tertiary-container": "#854d00",
+                    "on-secondary-fixed": "#181b24",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c4c6d2",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#3f51b5",
+                    "surface-container": "#eeeef0",
+                    "on-background": "#1a1c1e",
+                    "surface-variant": "#e2e2e5",
+                    "outline": "#757684",
+                    "on-surface-variant": "#454652"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "max-width": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "adlam-display": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline w-full top-0 z-50">
+<div class="flex flex-row-reverse justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim cursor-pointer p-2 hover:bg-surface-container rounded-full transition-colors">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">ADLaM Learner</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex flex-row-reverse gap-8 items-center">
+<a class="text-primary dark:text-primary-fixed-dim font-medium transition-colors duration-200" href="#">Typing</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:bg-surface-container px-4 py-2 rounded-lg transition-colors duration-200" href="#">Lessons</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:bg-surface-container px-4 py-2 rounded-lg transition-colors duration-200" href="#">Resources</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:bg-surface-container px-4 py-2 rounded-lg transition-colors duration-200" href="#">Home</a>
+</nav>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young West African student smiling, wearing a modern indigo-colored graduation gown. The background is a clean, minimalist ivory studio setting with soft side lighting, reflecting an academic and corporate professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaaru-AWVzd7z0mN9Zg6BOVG9oo4BezsQYP1qAtW8uaD7mPQUVsNGvofUpxe6dUWaEpqb3tQQZKO11gKnjCMIa5yU_w-mNf0SoARdMct2EanPTqIEHfeNIzE3GfhszjdZ445d477FCa4qHrPdVGj0ARYyKKdVLdKkrnX15VQGLmxxVvBXwYVBte2a-3i2HGM5bQDzbwFjQXCyzMY_J_A64K9z8hUPGhUarlUfkWpsRbnZ_GPn7YIHPhF0_tbM7s6uZ4CdFQqmC-kJx"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-start py-12 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto w-full">
+<!-- Stats Row -->
+<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-gutter mb-12">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center transition-all hover:border-primary">
+<span class="font-label-md text-label-md text-secondary uppercase mb-2">Words Per Minute</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg text-primary" id="wpm-display">42</span>
+<span class="font-label-md text-label-md text-outline">WPM</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center transition-all hover:border-primary">
+<div class="relative w-20 h-20 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-high" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-tertiary-container transition-all duration-500" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226.19" stroke-dashoffset="22.6" stroke-width="4"></circle>
+</svg>
+<span class="absolute font-headline-md text-headline-md text-tertiary">92%</span>
+</div>
+<span class="font-label-md text-label-md text-secondary uppercase mt-2">Accuracy</span>
+</div>
+<div class="bg-primary-container border border-primary rounded-xl p-6 flex flex-col items-center justify-center text-on-primary-container">
+<span class="font-label-md text-label-md text-primary-fixed uppercase mb-2">Total Score</span>
+<span class="font-headline-lg text-headline-lg font-bold">1,450</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-label-md text-label-md">+15% vs last session</span>
+</div>
+</div>
+</div>
+<!-- Practice Canvas -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant rounded-2xl p-12 flex flex-col items-center shadow-sm min-h-[500px] relative overflow-hidden">
+<!-- Subtle Background Pattern -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(var(--primary) 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+<!-- Target Word -->
+<div class="z-10 w-full flex flex-col items-center mb-16">
+<div class="flex gap-4 mb-8 overflow-x-auto py-2 px-4 no-scrollbar">
+<div class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full font-headline-md text-headline-md border border-outline-variant">𞤆𞤵𞤤𞤤𞤮</div>
+<div class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-headline-md text-headline-md border border-primary scale-110 shadow-md">𞤚𞤢𞤦𞤭𞤪𞤫</div>
+<div class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full font-headline-md text-headline-md border border-outline-variant">𞤂𞤫𞤳𞤳𞤭</div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-4 text-center max-w-2xl">
+                    Type the word shown above. Pay attention to the diacritics and character spacing.
+                </p>
+</div>
+<!-- Typing Input Area -->
+<div class="z-10 w-full max-w-3xl mb-12">
+<div class="relative group">
+<input autofocus="" class="w-full bg-surface border-2 border-outline-variant focus:border-primary rounded-xl py-8 px-12 text-center font-adlam-display text-adlam-display transition-all outline-none" dir="rtl" placeholder="𞤘𞤮𞤤𞥆𞤫 𞤸𞤫𞤪𞤫..." type="text"/>
+<div class="absolute left-6 top-1/2 -translate-y-1/2 opacity-0 group-focus-within:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-4xl typing-cursor">keyboard_alt</span>
+</div>
+</div>
+<!-- Suggestions -->
+<div class="flex flex-wrap justify-center gap-3 mt-6">
+<button class="bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-secondary font-label-md text-label-md px-4 py-2 rounded-lg transition-colors border border-outline-variant">𞤚𞤢𞤦𞤭𞤪𞤫</button>
+<button class="bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-secondary font-label-md text-label-md px-4 py-2 rounded-lg transition-colors border border-outline-variant">𞤚𞤢𞤦𞤭𞤪𞤢</button>
+<button class="bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-secondary font-label-md text-label-md px-4 py-2 rounded-lg transition-colors border border-outline-variant">𞤚𞤢𞤦𞤵𞤪𞤫</button>
+</div>
+</div>
+<!-- Virtual Keyboard (Reference Only) -->
+<div class="z-10 w-full max-w-4xl p-8 bg-surface-container-low rounded-2xl border border-outline-variant">
+<div class="grid grid-rows-4 gap-2" dir="ltr">
+<!-- Row 1 -->
+<div class="flex justify-center gap-2">
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤢</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤦</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤧</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤣</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤫</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤪</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤼</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤴</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤵</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤭</div>
+</div>
+<!-- Row 2 -->
+<div class="flex justify-center gap-2">
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤮</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤨</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤩</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤺</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤸</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤶</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤳</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤤</div>
+<div class="w-20 h-12 rounded bg-surface-container-highest border border-outline-variant flex items-center justify-center font-label-md text-label-md transition-colors cursor-pointer">ENTER</div>
+</div>
+<!-- Row 3 -->
+<div class="flex justify-center gap-2">
+<div class="w-16 h-12 rounded bg-surface-container-highest border border-outline-variant flex items-center justify-center font-label-md text-label-md transition-colors cursor-pointer">SHIFT</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤥</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤲</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤻</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤱</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤼</div>
+<div class="w-12 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-bold text-lg hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">𞤶</div>
+<div class="w-16 h-12 rounded bg-surface-container-highest border border-outline-variant flex items-center justify-center font-label-md text-label-md transition-colors cursor-pointer">BACK</div>
+</div>
+<!-- Row 4 (Space) -->
+<div class="flex justify-center gap-2">
+<div class="w-64 h-12 rounded bg-surface-container-lowest border border-outline-variant flex items-center justify-center hover:bg-primary-container transition-colors cursor-pointer"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="w-full mt-12 flex justify-between items-center bg-surface-variant rounded-xl p-6 border border-outline-variant">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-on-primary rounded-full hover:bg-primary-container hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined">restart_alt</span>
+<span class="font-medium">Reset Session</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2 border border-primary text-primary rounded-full hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Keyboard Settings</span>
+</button>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">timer</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Time Remaining: <strong class="text-on-surface">04:12</strong></span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">emoji_events</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Daily Goal: <strong class="text-on-surface">65%</strong></span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer / Bottom Navigation Area -->
+<footer class="bg-surface-container-low border-t border-outline-variant py-8 px-margin-desktop mt-12">
+<div class="max-w-max-width mx-auto flex flex-row-reverse justify-between items-center">
+<p class="font-label-md text-label-md text-secondary">© 2024 ADLaM Learner - Digital Script Preservation Initiative</p>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Update cursor effect and simple input logic
+        const input = document.querySelector('input');
+        const wpmDisplay = document.getElementById('wpm-display');
+        
+        input.addEventListener('input', (e) => {
+            // Logic for visual feedback on input
+            if (e.target.value.length > 0) {
+                input.classList.add('border-primary');
+            } else {
+                input.classList.remove('border-primary');
+            }
+        });
+
+        // Simulate WPM fluctuations
+        setInterval(() => {
+            const currentWpm = parseInt(wpmDisplay.innerText);
+            const fluctuation = Math.floor(Math.random() * 3) - 1;
+            wpmDisplay.innerText = Math.max(38, Math.min(45, currentWpm + fluctuation));
+        }, 3000);
+
+        // Keyboard press effects on the virtual keyboard
+        window.addEventListener('keydown', (e) => {
+            // This is just a visual demo for the prompt request
+            // In a real app, we would map physical keys to virtual ones
+        });
+    </script>
+</body></html>

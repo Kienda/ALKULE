@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ff"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#4355b9",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "secondary-fixed": "#e0e2ee",
+                    "on-secondary-fixed": "#181b24",
+                    "background": "#f9f9fc",
+                    "on-primary-container": "#cacfff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#454652",
+                    "surface-container-low": "#f3f3f6",
+                    "primary": "#24389c",
+                    "on-secondary-fixed-variant": "#434750",
+                    "tertiary-fixed-dim": "#ffb870",
+                    "tertiary": "#643900",
+                    "secondary": "#5b5e68",
+                    "outline": "#757684",
+                    "inverse-primary": "#bac3ff",
+                    "tertiary-fixed": "#ffdcbe",
+                    "inverse-surface": "#2f3133",
+                    "surface-dim": "#dadadc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1e",
+                    "surface-container-highest": "#e2e2e5",
+                    "primary-container": "#3f51b5",
+                    "surface-container-high": "#e8e8ea",
+                    "secondary-container": "#e0e2ee",
+                    "on-primary-fixed-variant": "#293ca0",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e2e2e5",
+                    "secondary-fixed-dim": "#c4c6d2",
+                    "on-tertiary-fixed": "#2c1600",
+                    "surface-container": "#eeeef0",
+                    "primary-fixed": "#dee0ff",
+                    "on-secondary-container": "#61646e",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#854d00",
+                    "surface-bright": "#f9f9fc",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9fc",
+                    "on-background": "#1a1c1e",
+                    "outline-variant": "#c5c5d4",
+                    "on-tertiary-container": "#ffc893",
+                    "primary-fixed-dim": "#bac3ff",
+                    "on-primary-fixed": "#00105c",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "max-width": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "adlam-display": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9fc;
+            font-family: 'Hanken Grotesk', sans-serif;
+            color: #1a1c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .rtl-flip {
+            transform: scaleX(-1);
+        }
+        .paper-ink-card {
+            border: 1px solid #c5c5d4;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .paper-ink-card:hover {
+            box-shadow: 0px 4px 20px rgba(36, 56, 156, 0.08);
+        }
+        .adlam-char {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline fixed top-0 w-full z-50">
+<nav class="flex flex-row-reverse justify-between items-center px-margin-desktop h-16 w-full max-w-max-width mx-auto">
+<!-- Search & Actions -->
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-full pr-10 pl-4 h-10 text-body-md focus:ring-2 focus:ring-primary w-64" placeholder="Search Lessons..." type="text"/>
+</div>
+<div class="cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-primary text-[32px]">account_circle</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-8">
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary-container transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1" href="#">Lessons</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary-container transition-colors" href="#">Typing</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary-container transition-colors" href="#">Resources</a>
+</div>
+<!-- Brand Logo -->
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">
+                ADLaM Education
+            </div>
+</nav>
+</header>
+<div class="flex flex-1 pt-16 h-full">
+<!-- Main Content Area -->
+<main class="flex-1 px-margin-desktop py-12 max-w-max-width mx-auto">
+<!-- Reference Image Section (Layout Mirroring) -->
+<div class="mb-12 rounded-xl overflow-hidden paper-ink-card relative group">
+<img alt="UI Reference" class="w-full aspect-[1.69] object-cover opacity-90 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfCgrcp7Ec3g12pjCnlufT7LXv5FMFZWfchS_Py-8CQiyqlBaATv093j9PBgxetqtsri5a30h1aRdBrNUycEUMEI3_SkfeQKn9byfNTlQH6vOFCjuqgQjjth5LkE8WcMEcwHQue6Xoz-9bkJWzNfLx4tcHfgjzdkmoCUfnhellU1-Dyi40XpPOaGDV1JtTvEh2EaVho-NNRUBGIFHY4H6lH9PYVOXDCdDS4q1KDyhrt4mSCajL7nb2jwlfg-2nrCUKge4iQo-cI09G"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end p-8">
+<div class="text-white">
+<span class="font-label-md text-label-md bg-primary-container px-3 py-1 rounded-full mb-2 inline-block">Curriculum Reference</span>
+<h2 class="font-headline-lg text-headline-lg">Mastering Punctuation</h2>
+</div>
+</div>
+</div>
+<!-- Informational Header -->
+<section class="mb-12">
+<div class="flex items-start gap-gutter mb-6">
+<div class="flex-1">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-4">The Art of ADLaM Punctuation</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+                            In the ADLaM script, punctuation serves as the breath of the language. It governs the flow, rhythm, and clarity of Fulfulde prose. Unlike Latin scripts, ADLaM punctuation is designed to complement the unique visual structure of the alphabet, ensuring that questions, pauses, and exclamations are distinctly marked while maintaining the calligraphic elegance of the text.
+                        </p>
+</div>
+<div class="w-1/3 bg-tertiary-fixed p-6 rounded-xl border border-tertiary-container/20">
+<div class="flex items-center gap-3 text-tertiary mb-3">
+<span class="material-symbols-outlined">info</span>
+<span class="font-label-md text-label-md font-bold">PRO TIP</span>
+</div>
+<p class="font-body-md text-body-md text-on-tertiary-fixed-variant">
+                            Always remember that ADLaM is read from right to left. Punctuation marks like the question mark are mirrored to guide the eye back into the flow of the next sentence.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Punctuation Bento Grid -->
+<section class="grid grid-cols-12 gap-gutter mb-12">
+<!-- Main Reference Table Container -->
+<div class="col-span-12 paper-ink-card rounded-xl overflow-hidden">
+<div class="bg-surface-container-high p-4 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Punctuation Reference Table</h3>
+<div class="flex gap-2">
+<button class="bg-white px-4 py-2 rounded-lg border border-outline-variant text-label-md font-label-md hover:bg-surface-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span> Export PDF
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-6 font-label-md text-label-md text-secondary uppercase tracking-wider">Symbol</th>
+<th class="p-6 font-label-md text-label-md text-secondary uppercase tracking-wider">Name (Fulfulde/Eng)</th>
+<th class="p-6 font-label-md text-label-md text-secondary uppercase tracking-wider">Usage Rules</th>
+<th class="p-6 font-label-md text-label-md text-secondary uppercase tracking-wider">Example</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Question Mark -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="p-6">
+<div class="w-16 h-16 bg-primary-fixed rounded-lg flex items-center justify-center text-primary font-bold text-3xl">؟</div>
+</td>
+<td class="p-6">
+<div class="font-headline-md text-headline-md text-primary">Yamre</div>
+<div class="font-label-md text-label-md text-outline">Question Mark</div>
+</td>
+<td class="p-6 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                        Used at the end of a direct question. Mirrored horizontally from the Latin version to align with RTL reading direction.
+                                    </td>
+<td class="p-6">
+<div class="font-adlam-display text-2xl text-on-surface">𞤀𞤲 𞤲𞤮𞤥𞤦𞤭؟</div>
+</td>
+</tr>
+<!-- Full Stop -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="p-6">
+<div class="w-16 h-16 bg-surface-container rounded-lg flex items-center justify-center text-on-surface font-bold text-3xl">.</div>
+</td>
+<td class="p-6">
+<div class="font-headline-md text-headline-md text-primary">Dartordu</div>
+<div class="font-label-md text-label-md text-outline">Full Stop / Period</div>
+</td>
+<td class="p-6 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                        Indicates the end of a declarative sentence. Placed on the baseline at the far left of the final word.
+                                    </td>
+<td class="p-6">
+<div class="font-adlam-display text-2xl text-on-surface">𞤃𞤭 𞤱𞤭𞤯𞤭 𞤶𞤢𞤽𞤲𞤵𞤺𞤮.</div>
+</td>
+</tr>
+<!-- Comma -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="p-6">
+<div class="w-16 h-16 bg-secondary-fixed rounded-lg flex items-center justify-center text-secondary font-bold text-3xl">⹁</div>
+</td>
+<td class="p-6">
+<div class="font-headline-md text-headline-md text-primary">Seerndordu</div>
+<div class="font-label-md text-label-md text-outline">Comma</div>
+</td>
+<td class="p-6 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                        Used to separate items in a list or mark a brief pause within a complex sentence.
+                                    </td>
+<td class="p-6">
+<div class="font-adlam-display text-2xl text-on-surface">𞤀, 𞤄⹁ 𞤅...</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Secondary Bento Cards -->
+<div class="col-span-12 lg:col-span-4 paper-ink-card rounded-xl p-6 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary mb-4 text-4xl">history_edu</span>
+<h4 class="font-headline-md text-headline-md text-primary mb-2">Modern Evolution</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">The punctuation set was standardized in 2012 to ensure cross-platform compatibility with modern digital typography systems.</p>
+</div>
+<div class="mt-6 border-t border-outline-variant pt-4">
+<a class="text-primary font-bold flex items-center gap-2 group" href="#">
+                            Read full history <span class="material-symbols-outlined rtl-flip group-hover:translate-x-[-4px] transition-transform">arrow_back</span>
+</a>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-8 bg-primary-container rounded-xl p-8 text-white flex items-center gap-8 relative overflow-hidden">
+<!-- Subtle background decoration -->
+<div class="absolute -bottom-10 -right-10 opacity-10">
+<span class="material-symbols-outlined text-[200px]">format_quote</span>
+</div>
+<div class="flex-1 relative z-10">
+<h4 class="font-headline-md text-headline-md mb-2">Practice Interactive Punctuation</h4>
+<p class="font-body-lg text-body-lg text-primary-fixed/80 mb-6">Test your knowledge of sentence structure by placing the correct marks in our interactive lab.</p>
+<button class="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-primary-fixed transition-all active:scale-95">
+                            Launch Learning Lab
+                        </button>
+</div>
+<div class="hidden md:block relative z-10">
+<div class="w-32 h-32 rounded-full border-4 border-white/20 flex items-center justify-center">
+<span class="font-adlam-display text-5xl">؟</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- SideNavBar (Right Side for RTL) -->
+<aside class="w-64 bg-surface-container-low border-l border-outline-variant fixed right-0 top-16 h-[calc(100vh-64px)] overflow-y-auto hidden md:flex flex-col p-4 gap-base z-40">
+<!-- Header -->
+<div class="mb-6 px-3">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<div class="text-label-md font-label-md font-black text-on-surface">ADLaM Basics</div>
+<div class="text-body-sm text-[12px] text-outline">Module 1: Introduction</div>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden mt-4">
+<div class="bg-tertiary h-full w-3/4"></div>
+</div>
+</div>
+<!-- Nav Links -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high cursor-pointer transition-all active:scale-95">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-label-md font-label-md">Writing System</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high cursor-pointer transition-all active:scale-95">
+<span class="material-symbols-outlined">font_download</span>
+<span class="text-label-md font-label-md">Alphabet</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high cursor-pointer transition-all active:scale-95">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="text-label-md font-label-md">Vowels</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high cursor-pointer transition-all active:scale-95">
+<span class="material-symbols-outlined">translate</span>
+<span class="text-label-md font-label-md">Consonants</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high cursor-pointer transition-all active:scale-95">
+<span class="material-symbols-outlined">pin</span>
+<span class="text-label-md font-label-md">Numerals</span>
+</div>
+<div class="flex items-center gap-4 bg-primary text-on-primary rounded-lg p-3 cursor-pointer shadow-md">
+<span class="material-symbols-outlined">match_case</span>
+<span class="text-label-md font-label-md">Punctuation</span>
+</div>
+</div>
+<!-- CTA -->
+<div class="mt-auto p-4 bg-surface-container-highest rounded-xl border border-outline-variant">
+<p class="text-label-md font-label-md text-on-surface-variant mb-3">Ready for the quiz?</p>
+<button class="w-full bg-primary text-white py-2 rounded-lg font-bold text-label-md active:scale-95 transition-transform">Resume Lesson</button>
+</div>
+</aside>
+</div>
+<!-- Floating Back Button (Contextual) -->
+<div class="fixed bottom-8 left-8">
+<button class="w-14 h-14 bg-white shadow-xl rounded-full flex items-center justify-center text-primary hover:bg-primary-container hover:text-white transition-all border border-outline-variant active:scale-90">
+<span class="material-symbols-outlined rtl-flip">arrow_back</span>
+</button>
+</div>
+<script>
+        // Micro-interactions for table rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                // Future expansion: highlight specific rules
+            });
+        });
+
+        // Search bar interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+        });
+    </script>
+</body></html>
