@@ -1,0 +1,6 @@
+import{createHmac,randomBytes,scryptSync,timingSafeEqual}from"node:crypto";const secret=process.env.SESSION_SECRET||"development-only-change-me";
+export function hashPassword(password,salt=randomBytes(16).toString("hex")){return`${salt}:${scryptSync(password,salt,64).toString("hex")}`}
+export function verifyPassword(password,saved){const[salt,hex]=saved.split(":");const actual=scryptSync(password,salt,64),expected=Buffer.from(hex,"hex");return actual.length===expected.length&&timingSafeEqual(actual,expected)}
+export function signSession(payload){const body=Buffer.from(JSON.stringify(payload)).toString("base64url"),signature=createHmac("sha256",secret).update(body).digest("base64url");return`${body}.${signature}`}
+export function verifySession(token){try{const[body,signature]=token.split("."),expected=createHmac("sha256",secret).update(body).digest("base64url");if(!timingSafeEqual(Buffer.from(signature),Buffer.from(expected)))return null;const payload=JSON.parse(Buffer.from(body,"base64url").toString());return payload.expiresAt>Date.now()?payload:null}catch{return null}}
+export function cookieValue(header,name){return header?.split(";").map(x=>x.trim().split("=")).find(([key])=>key===name)?.[1]||null}

@@ -4,7 +4,15 @@
 
 The existing Next.js App Router application now has a consolidated Alkule design system, brand asset components, responsive two-level desktop navigation, mobile menu and bottom navigation, substantial footer, editorial homepage, deterministic free typing lab, typed sample course marketplace with filters and empty state, sample learner dashboard, authentication forms, and purpose-specific content hub shells.
 
-All production files are independent of `.design`. Account, commerce, publishing, scheduling, moderation, audio, certificates, and persistence remain intentionally disconnected.
+All production files are independent of `.design`. Basic accounts and typing persistence are connected; commerce, publishing, scheduling, moderation, audio, and certificates remain intentionally disconnected.
+
+## Express backend
+
+The application uses two clearly separated processes: Next.js serves the frontend on port 3000 and Express serves the backend from `Backend/` on port 4000. Next.js proxies `/api/*` to Express, so browser requests remain same-origin. Implemented API domains include health, catalog, signup, login, logout, current session, authenticated typing progress, learner dashboard data, and newsletter subscriptions.
+
+Passwords use Node.js `scrypt`; sessions are signed and stored in HttpOnly, SameSite cookies. Backend code is isolated under `Backend/`. Runtime records are written atomically to `Backend/storage/data.json`, which is ignored by Git. Set `SESSION_SECRET` to a strong random value in Railway. For durable production data across deployments, set `ALKULE_DATA_DIR` to a mounted Railway volume path.
+
+Run `npm run test:api` for the backend integration suite. `npm run dev` starts both frontend and backend, while `npm start` starts both production processes after `npm run build`.
 
 ## Route map
 
@@ -46,7 +54,7 @@ All production files are independent of `.design`. Account, commerce, publishing
 
 ## Known limitations
 
-- Authentication, saved progress, purchases, subscriptions, certificates, schedules, messages, newsletter delivery, media playback, community posting, and editorial publishing are not connected.
+- Basic authentication, saved typing progress, dashboard data, catalog delivery, and newsletter collection are connected. Purchases, subscriptions, certificates, schedules, messages, email delivery, media playback, community posting, and editorial publishing remain future domains.
 - Fulfulde translations and romanizations require qualified native-speaker review.
 - The project has no automated browser test suite.
 - The installed `next@14.2.35` does not match the user-edited `package.json` range `^16.2.10`; dependencies were not changed during frontend consolidation.

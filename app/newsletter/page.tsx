@@ -1,0 +1,1 @@
+import NewsletterForm from"@/components/NewsletterForm";export const metadata={title:"Alkule updates"};export default function Page(){return <div className="bg-cyan-100 py-20"><NewsletterForm/></div>}

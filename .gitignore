@@ -8,5 +8,6 @@ build/
 next-env.d.ts
 .env
 instance/
+Backend/storage/data.json
 __pycache__/
 .design
