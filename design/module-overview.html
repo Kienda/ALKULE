@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ff"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ADLaM Alphabet Lessons</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* RTL Progress Bar specific - fills from right to left */
+        .progress-fill {
+            transition: width 1s ease-out;
+            width: 14%;
+        }
+        /* Custom scrollbar for a cleaner UI */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5c5d4;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c5c5d4",
+                    "primary-fixed": "#dee0ff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e2e2e5",
+                    "primary-container": "#3f51b5",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#2c1600",
+                    "tertiary-container": "#854d00",
+                    "primary-fixed-dim": "#bac3ff",
+                    "on-tertiary-container": "#ffc893",
+                    "surface-container-high": "#e8e8ea",
+                    "tertiary-fixed-dim": "#ffb870",
+                    "secondary-container": "#e0e2ee",
+                    "on-secondary-container": "#61646e",
+                    "on-secondary-fixed-variant": "#434750",
+                    "inverse-primary": "#bac3ff",
+                    "secondary-fixed-dim": "#c4c6d2",
+                    "surface-tint": "#4355b9",
+                    "secondary": "#5b5e68",
+                    "tertiary": "#643900",
+                    "inverse-surface": "#2f3133",
+                    "surface-container-low": "#f3f3f6",
+                    "on-primary-container": "#cacfff",
+                    "primary": "#24389c",
+                    "tertiary-fixed": "#ffdcbe",
+                    "surface-bright": "#f9f9fc",
+                    "on-secondary-fixed": "#181b24",
+                    "surface-container-highest": "#e2e2e5",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#e0e2ee",
+                    "surface-container": "#eeeef0",
+                    "surface": "#f9f9fc",
+                    "on-primary-fixed-variant": "#293ca0",
+                    "on-background": "#1a1c1e",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "background": "#f9f9fc",
+                    "surface-dim": "#dadadc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "outline": "#757684",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#454652",
+                    "on-surface": "#1a1c1e",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#00105c",
+                    "on-tertiary-fixed-variant": "#693c00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "max-width": "1280px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "adlam-display": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface w-full top-0 border-b border-outline-variant flex flex-row-reverse justify-between items-center px-margin-mobile py-4 sticky z-40">
+<div class="flex items-center gap-3">
+<span class="font-headline-md text-headline-md font-bold text-primary">ADLaM Learner</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 transition-colors duration-200 hover:bg-surface-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young West African student smiling, wearing academic modern attire. The background is a soft, blurred library setting with warm indigo and white lighting, maintaining a clean and scholarly atmosphere consistent with a high-end educational application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQGVacS74PRkpAd8qKPDRVqSxEz7J0s8E_ZajszPMOmpv4_CleUTILkYuXHsFc46DH6kIX-LW2YmCX1pdfjL-HSzOp0oT368XyKl_MxHxRi0PzffDFkdh1VjbsIZqotKXFhR0i4aM_1f9nS9QARNCAOVyIjKGckmhoS8ieUFeGzDlGMQBaUKwh-VlduNkooB4Dsp6rELDK9eU34dnfn2LY2qfWIL94wDkdCZWA_ZJCAmMusdM4G6ns_0XG2ZYJTHiTVHihgvVJbvBS"/>
+</div>
+</div>
+</header>
+<main class="flex-1 px-margin-mobile py-6 pb-24 max-w-md mx-auto w-full">
+<!-- Progress Section -->
+<section class="mb-8">
+<div class="flex justify-between items-end mb-2">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Module 1 - Letters</h1>
+<span class="font-label-md text-label-md text-secondary">14% Complete</span>
+</div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container progress-fill"></div>
+</div>
+</section>
+<!-- Module Grid (Asymmetric/Bento style for items) -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Vowels (Large Highlight) -->
+<div class="group relative bg-surface border border-outline-variant rounded-xl p-5 hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-tertiary-container uppercase tracking-wider">Lesson 1.1</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Vowels</h2>
+<span class="font-adlam-display text-2xl text-primary mt-1">𞤀 𞤉 𞤆 𞤌 𞤓</span>
+</div>
+<div class="w-12 h-12 bg-primary-container/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-primary font-label-md text-label-md">Beginner</span>
+<span class="text-secondary font-label-md text-label-md">12 Letters</span>
+</div>
+<!-- Progress Line at bottom -->
+<div class="absolute bottom-0 right-0 left-0 h-1 bg-tertiary-fixed-dim" style="width: 100%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Consonants 1 -->
+<div class="group bg-surface border border-outline-variant rounded-xl p-4 hover:border-primary transition-all duration-300 cursor-pointer">
+<div class="w-10 h-10 bg-surface-container-high rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-secondary">font_download</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-1">Consonants 1</h3>
+<p class="font-label-md text-xs text-secondary mb-4">𞤄 𞤅 𞤆 𞤇</p>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-xs text-on-secondary-fixed-variant">80% Done</span>
+<span class="material-symbols-outlined text-primary text-sm">chevron_left</span>
+</div>
+</div>
+<!-- Consonants 2 -->
+<div class="group bg-surface border border-outline-variant rounded-xl p-4 hover:border-primary transition-all duration-300 cursor-pointer">
+<div class="w-10 h-10 bg-surface-container-high rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-secondary">spellcheck</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-1">Consonants 2</h3>
+<p class="font-label-md text-xs text-secondary mb-4">𞤈 𞤉 𞤊 𞤋</p>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-xs text-secondary">Locked</span>
+<span class="material-symbols-outlined text-outline text-sm">lock</span>
+</div>
+</div>
+</div>
+<!-- Numbers -->
+<div class="group bg-surface border border-outline-variant rounded-xl p-5 hover:border-primary transition-all duration-300 cursor-pointer flex items-center gap-6">
+<div class="w-16 h-16 bg-tertiary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+<span class="font-adlam-display text-3xl text-tertiary">𞥐𞥑𞥒</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-2xl text-on-surface">Numbers</h3>
+<p class="font-body-md text-secondary">Master the ADLaM numeral system</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_back</span>
+</div>
+<!-- Visual Asset Card -->
+<div class="relative h-40 rounded-2xl overflow-hidden mt-2 border border-outline-variant">
+<div class="absolute inset-0 z-0 bg-primary-container">
+
+</div>
+<div class="absolute inset-0 z-10 flex flex-col justify-end p-5 bg-gradient-to-t from-primary/80 to-transparent">
+<h4 class="font-headline-md text-on-primary">Practice Session</h4>
+<p class="font-body-md text-on-primary-container text-sm">Quick 5-minute review of everything learned today.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex flex-row-reverse justify-around items-center py-2 px-2 bg-surface border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1 hover:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label-md text-label-md">Lessons</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1 hover:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">keyboard</span>
+<span class="font-label-md text-label-md">Typing</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1 hover:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-label-md text-label-md">Resources</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for lesson items
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.add('scale-[0.98]');
+                setTimeout(() => item.classList.remove('scale-[0.98]'), 100);
+            });
+        });
+
+        // Add a subtle parallax effect to the shader container
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shader = document.querySelector('webgl-shader');
+            if (shader) {
+                shader.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body></html>
