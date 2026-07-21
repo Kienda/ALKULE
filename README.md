@@ -15,19 +15,28 @@ npm run dev
 
 Requires Node 18.17+ (Node 20 LTS recommended).
 
-## What's in the starter
+## What's built
 
 | Area | Path | Status |
 |------|------|--------|
 | Landing page (hero = the 28 letters) | `app/page.tsx` | ✅ working |
-| Typing game MVP (glyph recognition + SRS) | `app/learn/typing` · `components/TypingGame.tsx` | ✅ working |
-| Alphabet explorer (28 letters + numerals) | `app/alphabet` | ✅ working |
-| Course catalog (5 categories) | `app/courses` | 🔲 stub |
+| Alphabet explorer + per-letter detail pages | `app/alphabet` · `app/alphabet/[slug]` | ✅ working |
+| Module lessons (vowels, consonants, numerals, accents-tones, writing-system) | `app/learn/lessons` · `components/LessonShell.tsx` | ✅ working |
+| Typing practice (score/accuracy/WPM, physical + on-screen keyboard) | `app/learn/typing` · `components/TypingPractice.tsx` | ✅ working |
+| ADLaM writer keyboard | `app/learn/keyboard` · `components/AdlamKeyboard.tsx` | ✅ working |
+| Flashcards (flip study: letters + words) | `app/learn/flashcards` · `components/Flashcards.tsx` | ✅ working |
+| Tiered exam (recognize / scramble / spell) + keyboard typing | `app/learn/exam` · `components/ExamSession.tsx` · `components/AdlamKeys.tsx` | ✅ working |
+| SRS review session | `app/learn/review` · `components/ReviewSession.tsx` | ✅ working |
+| Culture (story + proverbs) | `app/culture` | ✅ working |
+| Local profile + progress dashboard | `app/login` · `app/dashboard` · `components/Dashboard.tsx` | ✅ working |
 | Library | `app/library` | 🔲 stub |
 | Header / Footer / Language switcher | `components/` | ✅ working |
-| 5-locale i18n with RTL flip | `lib/i18n.ts` · `lib/LocaleProvider.tsx` | ✅ working |
-| ADLaM data model (Unicode-derived) | `data/adlam.ts` | ✅ working |
-| Spaced-repetition scheduler (SM-2-lite) | `lib/srs.ts` | ✅ working (in-memory) |
+| 5-locale i18n with RTL flip | `lib/i18n.ts` | ✅ working |
+| ADLaM data model (Unicode-derived) + keyboard layout | `data/adlam.ts` · `data/keyboardLayout.ts` | ✅ working |
+| Spaced-repetition scheduler (SM-2-lite) + mastery store | `lib/srs.ts` · `lib/masteryStore.ts` | ✅ working (localStorage) |
+
+State is client-side (`localStorage`) via `lib/masteryStore.ts`, `lib/typingStore.ts`,
+`lib/examStore.ts`, and `lib/profile.ts` — the seam for a future backend.
 
 ## Architecture decisions (why it's built this way)
 
@@ -59,24 +68,37 @@ Requires Node 18.17+ (Node 20 LTS recommended).
 
 ## Roadmap (suggested order)
 
-1. **Letter detail pages** — stroke order, audio, example words (`/alphabet/[letter]`).
-2. **Auth + persistence** — save progress, streaks, SRS state (e.g. Auth.js + Postgres/Prisma, or Supabase).
-3. **Review mode** — a session driven by `dueRecords()` from `lib/srs.ts`.
-4. **Course player** — modules, lessons, auto-graded exams; then paid certificates with instructor grading queue.
-5. **Instructor studio** — course builder, book uploads, live-session scheduling.
-6. **Handwriting canvas** — trace letters on touch devices (motor encoding boosts glyph memory).
-7. **PWA / offline** — cache the shell and current unit for low-bandwidth learners.
-8. **Sound → glyph drills** — record native-speaker audio for each letter.
+Done: letter detail pages, module lessons, typing practice, writer keyboard,
+flashcards, tiered exam, SRS review, culture pages, local profile + dashboard.
 
-## Repository setup
+Next:
 
-The repo is initialized locally. To publish:
+1. **Auth + persistence** — move mastery/typing/exam/profile server-side
+   (Supabase [auth+Postgres] or Postgres + Prisma + Auth.js). Seam is
+   `lib/profile.ts` + the stores.
+2. **Vetted content** — replace provisional words/proverbs/romanizations with
+   native-speaker-reviewed material; add real example-word assets/images.
+3. **Audio + stroke order** — record native-speaker letter audio; add
+   stroke-order/tracing SVGs on lesson pages.
+4. **Course player** — modules, lessons, certificates, instructor grading.
+5. **Handwriting canvas** — trace letters on touch devices.
+6. **PWA / offline** — cache the shell + current unit for low-bandwidth learners.
+
+## Contributing
+
+Person-named branches keep work separate (e.g. `abubakar/...`, `Kienda/...`);
+commit authorship is recorded per commit. Typecheck before pushing:
 
 ```bash
-git remote add origin https://github.com/<your-org>/alkule.git
-git push -u origin main
+git clone https://github.com/Dialloni/ALKULE.git
+git checkout -b <you>/<feature>
+npx tsc --noEmit      # must pass
 ```
+
+Do **not** run `npm run build` while `npm run dev` is running — it clobbers
+`.next`. See `CLAUDE.md` for conventions (RTL, Noto Sans Adlam) and the full
+directory map.
 
 ## Community resources
 
-Tabalde · Akweeyo · Ankataa · N'Ko Learner · N'Ko Institute · Endangered Alphabets (ADLaM) — linked in the site footer as the wider ecosystem this project serves.
+Tabalde · Akweeyo · Endangered Alphabets (ADLaM) — linked in the site footer as the wider ecosystem this project serves.

@@ -19,7 +19,13 @@ export const LOCALES: { code: Locale; label: string; dir: "ltr" | "rtl" }[] = [
 export const DEFAULT_LOCALE: Locale = "en";
 
 type Dict = {
-  nav: { learn: string; courses: string; library: string; community: string };
+  nav: {
+    learn: string;
+    courses: string;
+    culture: string;
+    library: string;
+    community: string;
+  };
   cta: { start: string; login: string };
   hero: { title: string; subtitle: string };
   typing: { heading: string; prompt: string; score: string; streak: string };
@@ -28,7 +34,7 @@ type Dict = {
 
 export const DICTIONARIES: Record<Locale, Dict> = {
   en: {
-    nav: { learn: "Learn", courses: "Courses", library: "Library", community: "Community" },
+    nav: { learn: "Learn", courses: "Courses", culture: "Culture", library: "Library", community: "Community" },
     cta: { start: "Start learning — free", login: "Log in" },
     hero: {
       title: "Learn to read and write ADLaM",
@@ -44,7 +50,7 @@ export const DICTIONARIES: Record<Locale, Dict> = {
     footer: { mission: "Our mission", resources: "Resources", legal: "Terms & privacy" },
   },
   fr: {
-    nav: { learn: "Apprendre", courses: "Cours", library: "Bibliothèque", community: "Communauté" },
+    nav: { learn: "Apprendre", courses: "Cours", culture: "Culture", library: "Bibliothèque", community: "Communauté" },
     cta: { start: "Commencer — gratuit", login: "Se connecter" },
     hero: {
       title: "Apprenez à lire et écrire l'ADLaM",
@@ -60,7 +66,7 @@ export const DICTIONARIES: Record<Locale, Dict> = {
     footer: { mission: "Notre mission", resources: "Ressources", legal: "Conditions & confidentialité" },
   },
   ar: {
-    nav: { learn: "تعلَّم", courses: "الدورات", library: "المكتبة", community: "المجتمع" },
+    nav: { learn: "تعلَّم", courses: "الدورات", culture: "الثقافة", library: "المكتبة", community: "المجتمع" },
     cta: { start: "ابدأ التعلم — مجانًا", login: "تسجيل الدخول" },
     hero: {
       title: "تعلَّم قراءة وكتابة أبجدية أدلم",
@@ -75,7 +81,7 @@ export const DICTIONARIES: Record<Locale, Dict> = {
     footer: { mission: "رسالتنا", resources: "الموارد", legal: "الشروط والخصوصية" },
   },
   "ff-Latn": {
-    nav: { learn: "Jaŋde", courses: "Duɗe", library: "Defte", community: "Renndo" },
+    nav: { learn: "Jaŋde", courses: "Duɗe", culture: "Aadaaji", library: "Defte", community: "Renndo" },
     cta: { start: "Fuɗɗo jaŋde — mehre", login: "Naat" },
     hero: {
       title: "Jaŋgu winndugol ADLaM",
@@ -90,7 +96,7 @@ export const DICTIONARIES: Record<Locale, Dict> = {
     footer: { mission: "Faandaare amen", resources: "Ngaluuji", legal: "Sarɗiiji" },
   },
   "ff-Adlm": {
-    nav: { learn: "𞤔𞤢𞤲𞤺𞤣𞤫", courses: "𞤁𞤵𞤯𞤫", library: "𞤁𞤫𞤬𞤼𞤫", community: "𞤈𞤫𞤲𞤣𞤮" },
+    nav: { learn: "𞤔𞤢𞤲𞤺𞤣𞤫", courses: "𞤁𞤵𞤯𞤫", culture: "𞤀𞤢𞤣𞤢𞤢𞤶𞤭", library: "𞤁𞤫𞤬𞤼𞤫", community: "𞤈𞤫𞤲𞤣𞤮" },
     cta: { start: "𞤊𞤵𞤯𞤯𞤮 𞤶𞤢𞤲𞤺𞤣𞤫", login: "𞤐𞤢𞤢𞤼" },
     hero: {
       title: "𞤔𞤢𞤲𞤺𞤵 𞤱𞤭𞤲𞤣𞤵𞤺𞤮𞤤 𞤀𞤣𞤤𞤢𞤥",

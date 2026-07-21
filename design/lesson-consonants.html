@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ff"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interactive Consonant Chart - ADLaM Education</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Hanken+Grotesk', sans-serif;
+            background-color: #f9f9fc;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for a cleaner educational look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f3f3f6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5c5d4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #757684;
+        }
+        /* Active nav specific shadow */
+        .nav-shadow {
+            box-shadow: 0px 4px 20px rgba(67, 85, 185, 0.08);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#4355b9",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "secondary-fixed": "#e0e2ee",
+                    "on-secondary-fixed": "#181b24",
+                    "background": "#f9f9fc",
+                    "on-primary-container": "#cacfff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#454652",
+                    "surface-container-low": "#f3f3f6",
+                    "primary": "#24389c",
+                    "on-secondary-fixed-variant": "#434750",
+                    "tertiary-fixed-dim": "#ffb870",
+                    "tertiary": "#643900",
+                    "secondary": "#5b5e68",
+                    "outline": "#757684",
+                    "inverse-primary": "#bac3ff",
+                    "tertiary-fixed": "#ffdcbe",
+                    "inverse-surface": "#2f3133",
+                    "surface-dim": "#dadadc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1e",
+                    "surface-container-highest": "#e2e2e5",
+                    "primary-container": "#3f51b5",
+                    "surface-container-high": "#e8e8ea",
+                    "secondary-container": "#e0e2ee",
+                    "on-primary-fixed-variant": "#293ca0",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e2e2e5",
+                    "secondary-fixed-dim": "#c4c6d2",
+                    "on-tertiary-fixed": "#2c1600",
+                    "surface-container": "#eeeef0",
+                    "primary-fixed": "#dee0ff",
+                    "on-secondary-container": "#61646e",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#854d00",
+                    "surface-bright": "#f9f9fc",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9fc",
+                    "on-background": "#1a1c1e",
+                    "outline-variant": "#c5c5d4",
+                    "on-tertiary-container": "#ffc893",
+                    "primary-fixed-dim": "#bac3ff",
+                    "on-primary-fixed": "#00105c",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "max-width": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "adlam-display": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline fixed top-0 left-0 right-0 z-50">
+<div class="flex flex-row-reverse justify-between items-center px-margin-desktop w-full max-w-max-width mx-auto h-20">
+<!-- Brand Logo -->
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">
+                ADLaM Education
+            </div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex flex-row-reverse items-center gap-10">
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary-container dark:hover:text-primary-fixed-variant transition-colors cursor-pointer active:opacity-80" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 cursor-pointer active:opacity-80" href="#">Lessons</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary-container dark:hover:text-primary-fixed-variant transition-colors cursor-pointer active:opacity-80" href="#">Typing</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary-container dark:hover:text-primary-fixed-variant transition-colors cursor-pointer active:opacity-80" href="#">Resources</a>
+</nav>
+<!-- Trailing Action -->
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary text-3xl cursor-pointer active:scale-95 transition-transform">account_circle</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-20">
+<!-- Main Content Area (Canvas) -->
+<main class="flex-1 px-margin-desktop py-10 overflow-y-auto" style="margin-right: 256px;">
+<div class="max-w-4xl mx-auto">
+<!-- Breadcrumbs / Context -->
+<div class="mb-6 flex items-center gap-2 text-label-md font-label-md text-secondary">
+<span>Lessons</span>
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+<span>Module 1</span>
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+<span class="text-primary">Interactive Consonant Chart</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-primary mb-8">ADLaM Consonants (𞤑𞤮𞤲𞤧𞤮𞤲𞤢𞤲𞤼𞤫)</h1>
+<!-- Tip Box: How to Pronounce -->
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-6 rounded-xl border border-tertiary-container/20 mb-10 flex gap-4 items-start shadow-sm">
+<div class="bg-tertiary-container p-2 rounded-lg text-on-tertiary-container">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<div>
+<h3 class="font-bold text-lg mb-1">How to Pronounce</h3>
+<p class="text-body-md opacity-90 leading-relaxed">
+                            ADLaM consonants are mostly phonetic. Pay close attention to the implosive sounds (marked with dots) which are unique to the Fulfulde language. Hover over any character to see a visual diagram of mouth placement.
+                        </p>
+</div>
+</div>
+<!-- Interactive Table Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden nav-shadow">
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 text-label-md font-label-md text-secondary">Character</th>
+<th class="px-6 py-4 text-label-md font-label-md text-secondary">Romanization</th>
+<th class="px-6 py-4 text-label-md font-label-md text-secondary">Pronunciation</th>
+<th class="px-6 py-4 text-label-md font-label-md text-secondary">Example Word</th>
+<th class="px-6 py-4 text-label-md font-label-md text-secondary">Sound</th>
+<th class="px-6 py-4 text-label-md font-label-md text-secondary">Audio</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-6 text-adlam-display font-adlam-display text-primary">𞤀</td>
+<td class="px-6 py-6 font-label-md text-secondary">A</td>
+<td class="px-6 py-6 text-body-md italic text-on-surface-variant">/a/ as in 'Apple'</td>
+<td class="px-6 py-6">
+<div class="flex flex-col">
+<span class="text-headline-md font-bold text-on-surface">𞤀𞤤𞤤𞤢</span>
+<span class="text-label-md text-secondary">Alla (God)</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="w-12 h-2 bg-secondary-container rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[40%]"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary hover:bg-primary-container active:scale-95 transition-all">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-6 text-adlam-display font-adlam-display text-primary">𞤄</td>
+<td class="px-6 py-6 font-label-md text-secondary">B</td>
+<td class="px-6 py-6 text-body-md italic text-on-surface-variant">/b/ as in 'Ball'</td>
+<td class="px-6 py-6">
+<div class="flex flex-col">
+<span class="text-headline-md font-bold text-on-surface">𞤄𞤢𞤦𞤢</span>
+<span class="text-label-md text-secondary">Baba (Father)</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="w-12 h-2 bg-secondary-container rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[75%]"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary hover:bg-primary-container active:scale-95 transition-all">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-6 text-adlam-display font-adlam-display text-primary">𞤅</td>
+<td class="px-6 py-6 font-label-md text-secondary">S</td>
+<td class="px-6 py-6 text-body-md italic text-on-surface-variant">/s/ as in 'Sun'</td>
+<td class="px-6 py-6">
+<div class="flex flex-col">
+<span class="text-headline-md font-bold text-on-surface">𞤅𞤢𞤤𞤢𞤥</span>
+<span class="text-label-md text-secondary">Salam (Peace)</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="w-12 h-2 bg-secondary-container rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[60%]"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary hover:bg-primary-container active:scale-95 transition-all">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high transition-colors group">
+<td class="px-6 py-6 text-adlam-display font-adlam-display text-primary">𞤁</td>
+<td class="px-6 py-6 font-label-md text-secondary">D</td>
+<td class="px-6 py-6 text-body-md italic text-on-surface-variant">/d/ as in 'Dog'</td>
+<td class="px-6 py-6">
+<div class="flex flex-col">
+<span class="text-headline-md font-bold text-on-surface">𞤁𞤢𞤲𞤣𞤫</span>
+<span class="text-label-md text-secondary">Dande (Neck)</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="w-12 h-2 bg-secondary-container rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[50%]"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary hover:bg-primary-container active:scale-95 transition-all">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Visual Reference Placeholder -->
+<div class="mt-12">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-4">Anatomical Reference</h2>
+<div class="rounded-xl border border-outline-variant overflow-hidden bg-white">
+<img class="w-full aspect-[1.69] object-cover opacity-90" data-alt="A scientific medical illustration of the human head and neck in profile, showing the vocal tract and mouth anatomy. The style is clean, modern, and educational, using the Indigo Professional Educational color palette of deep blues and subtle grays. Highly detailed labels point to areas like the alveolar ridge, soft palate, and larynx. The lighting is neutral and clear, suitable for a linguistic textbook." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxyQ5Z1rPQlI9qv4zNCHGhRwhGzG5Dm7c8OsmNwJB63PAIQsafX_AmO3PubK-hKFY9bOk_tlvGUqVVK5OtJ-CH__N2Rqs1RJVaGhj8e0Ugww1V_jBWEjBN1uRXQ9DiuewcULAJqcr9eKczJQGGrPsZrNwWUEtnwcjy84wdpE-uwyHgr2Vk799nZMFoZSHmZD_xU0lSxQranvsrM7OW1vvJ0esAn7Bkkixx-jbxhQZ_uzsy2-_7wzgIa7zJQjr4o8GXtTWrbwcsf0sQ"/>
+</div>
+</div>
+</div>
+</main>
+<!-- SideNavBar -->
+<aside class="bg-surface-container-low dark:bg-surface-container-low border-l border-outline-variant dark:border-outline fixed right-0 top-20 bottom-0 w-64 rtl flex flex-col gap-base p-4 z-40">
+<!-- Sidebar Header -->
+<div class="mb-6 px-3">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<div class="text-label-md font-label-md font-black text-on-surface">ADLaM Basics</div>
+<div class="text-body-md text-secondary">Module 1: Intro</div>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-bold cursor-pointer active:scale-95 transition-transform">
+                    Resume Lesson
+                </button>
+</div>
+<!-- Navigation Items -->
+<div class="space-y-1">
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-on-secondary-fixed-variant p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-label-md font-label-md">Writing System</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-on-secondary-fixed-variant p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">font_download</span>
+<span class="text-label-md font-label-md">Alphabet</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-on-secondary-fixed-variant p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="text-label-md font-label-md">Vowels</span>
+</div>
+<div class="flex items-center gap-4 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-lg p-3 cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">translate</span>
+<span class="text-label-md font-label-md">Consonants</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-on-secondary-fixed-variant p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">pin</span>
+<span class="text-label-md font-label-md">Numerals</span>
+</div>
+</div>
+<!-- Progress Indicator -->
+<div class="mt-auto px-3 pb-4">
+<div class="text-label-md text-secondary mb-2">Lesson Progress</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Floating Action Feedback (Contextual for Lesson) -->
+<button class="fixed bottom-8 left-8 w-14 h-14 bg-tertiary-container text-on-tertiary-container rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-50">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<script>
+        // Simple Audio Simulation
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.querySelector('.material-symbols-outlined')?.textContent === 'play_arrow') {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('.material-symbols-outlined');
+                    icon.textContent = 'volume_up';
+                    this.classList.add('bg-tertiary');
+                    
+                    setTimeout(() => {
+                        icon.textContent = 'play_arrow';
+                        this.classList.remove('bg-tertiary');
+                    }, 1500);
+                });
+            }
+        });
+
+        // Hover Effect for Rows (visual feedback)
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.querySelector('td:first-child').classList.add('scale-110', 'transition-transform');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.querySelector('td:first-child').classList.remove('scale-110');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,43 @@
+# ADLaM Learner: Developer Handoff
+
+This document contains the core architectural blueprints for the ADLaM Learner platform. These designs are optimized for ADLaM's Right-to-Left (RTL) script flow and use a professional educational theme.
+
+## Branding: ADLaM Education
+**Identity:** The platform operates under the brand name **ADLaM Education**. This identity should be prominently featured in the TopAppBar/Header across all screens to establish authority and trust in the educational content.
+
+## Core Platform Screens
+
+### 1. Home / Landing Page
+**Purpose:** Brand identity (ADLaM Education), global navigation, and main entry points.
+**Reference:** {{DATA:SCREEN:SCREEN_56}}
+
+### 2. Curriculum Overview
+**Purpose:** Information architecture for alphabet modules and progress tracking.
+**Reference:** {{DATA:SCREEN:SCREEN_17}}
+
+### 3. Interactive Lesson Template
+**Purpose:** Character learning interface with pronunciation labs and script charts.
+**Reference:** {{DATA:SCREEN:SCREEN_22}}
+
+### 4. ADLaM Typing Practice
+**Purpose:** Custom RTL virtual keyboard implementation and real-time typing feedback.
+**Reference:** {{DATA:SCREEN:SCREEN_57}}
+
+## Technical Specifications
+
+### Design System: Indigo Professional Educational
+*   **Color Mode:** Light
+*   **Primary Brand Color:** `#3f51b5` (Indigo)
+*   **Typography:** Hanken Grotesk (Sans-serif)
+*   **Corner Radius:** 8px (Rounded)
+
+### Script Requirements
+*   **Direction:** Right-to-Left (RTL)
+*   **Script Name:** ADLaM
+*   **Standardization:** Based on the 2012 ADLaM Script standardization.
+
+## Implementation Notes for Claude
+-   Ensure all container layouts respect `dir="rtl"` where appropriate.
+-   The "ADLaM Education" brand should be the primary logo/wordmark in the navigation bar.
+-   The Typing Practice module requires a custom key-mapping for the ADLaM script.
+-   Navigation should remain persistent across the learning flow.
