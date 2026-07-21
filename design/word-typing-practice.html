@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ff"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ADLaM Learner - Typing Practice</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#3f51b5",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#dee0ff",
+                    "on-primary-container": "#00105c",
+                    "secondary": "#5b5e68",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#e0e2ee",
+                    "on-secondary-container": "#181b24",
+                    "tertiary": "#77536d",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#42a547",
+                    "on-tertiary-container": "#003308",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#410002",
+                    "background": "#f9f9fc",
+                    "on-background": "#1a1c1e",
+                    "surface": "#f9f9fc",
+                    "on-surface": "#1a1c1e",
+                    "surface-variant": "#e2e2e5",
+                    "on-surface-variant": "#454652",
+                    "outline": "#757684",
+                    "outline-variant": "#c5c5d4",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f3f3f6",
+                    "surface-container": "#eeeef0",
+                    "surface-container-high": "#e8e8ea",
+                    "surface-container-highest": "#e2e2e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "8px",
+                    "lg": "12px",
+                    "xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "max-width": "1280px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .adlam-text {
+            font-family: 'Hanken Grotesk', 'Noto Sans Adlam', sans-serif;
+            direction: rtl;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: #3f51b5;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-right: 2px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        .keyboard-grid {
+            display: grid;
+            grid-template-columns: repeat(40, 1fr);
+            gap: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest border-b border-outline-variant w-full sticky top-0 z-50">
+<div class="flex flex-row-reverse justify-between items-center px-margin-mobile h-16 max-w-[640px] mx-auto w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-primary overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdGJWKhHZ__0ZSlgrPKOyLW07s9FI7Y1J7sgKvkjG5HkxPeFUnPvjEexEHO_QLUMTqcxenr5OuRcB-5O0wpMknLG8E6tYMCzGrg4Q8L0yKpDOBVL7XVX2_KiM9Al-AO2PiF6-eGRNMy4hpYbapwWIfuWHfeT1K_LRTCTd_wbDzLfIp5WDGgEjsyn87_ynGhRomSDcEEyTVVZHI786p6DF57G1vlY6s8VomXVDz2RyedbQtwmXr2bBC-VWZYdibFHz81pNzIbXHBDGF"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">menu_book</span>
+<h1 class="font-headline-md text-xl font-bold text-primary">ADLaM Learner</h1>
+</div>
+<button class="p-2 text-primary rounded-full">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[640px] px-margin-mobile py-6 flex flex-col gap-6">
+<!-- Score Badge -->
+<div class="flex justify-center">
+<div class="bg-tertiary-container text-on-tertiary-container px-8 py-2 rounded-full shadow-sm flex items-center gap-2">
+<span class="font-label-md text-xs uppercase tracking-widest font-bold opacity-80">Score :</span>
+<span class="text-2xl font-bold" id="score-display">0</span>
+</div>
+</div>
+<!-- Practice Area Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm relative min-h-[220px] flex flex-col justify-center">
+<!-- Floating Label (LTR style inside RTL context needs handling) -->
+<div class="absolute -top-3 right-4 bg-secondary text-on-secondary px-3 py-1 rounded text-xs font-medium shadow-sm" dir="ltr">Practice: Full Words</div>
+<div class="flex flex-col gap-4 text-right adlam-text"><div class="border-b border-outline-variant border-dotted pb-4"><span class="text-4xl text-on-surface opacity-30 select-none">𞤀𞤣𞤤𞤢𞤥 𞤆𞤵𞤤𞤢𞤪 𞤉𞤳𞤭𞤼𞤮𞤤</span></div><div class="flex items-center justify-end"><span class="typing-cursor"></span><span class="text-4xl text-primary font-bold">𞤀𞤣𞤤𞤢𞤥 𞤆𞤵𞤤</span></div></div>
+</div>
+<!-- Stats Bento -->
+<div class="grid grid-cols-2 gap-4 w-full">
+<div class="bg-white border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center">
+<span class="text-xs font-medium text-on-surface-variant mb-1">Accuracy</span>
+<span class="text-2xl font-bold text-primary">98%</span>
+</div>
+<div class="bg-white border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center">
+<span class="text-xs font-medium text-on-surface-variant mb-1">Words/Min</span>
+<span class="text-2xl font-bold text-primary">42</span>
+</div>
+</div>
+<!-- Virtual Keyboard -->
+<div class="flex gap-2 overflow-x-hidden py-2 mb-2 justify-center w-full"><button class="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-sm font-medium adlam-text">𞤆𞤵𞤤𞤢𞤪</button><button class="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-sm font-medium adlam-text">𞤆𞤵𞤤𞤤𞤮</button><button class="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-sm font-medium adlam-text">𞤆𞤵𞤤𞤢𞤳𞤵</button></div><div class="bg-surface-container border border-outline-variant rounded-xl p-2 shadow-sm mt-auto" dir="ltr">
+<div class="keyboard-grid">
+<!-- Row 1 -->
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg hover:bg-surface-container-low active:scale-95 transition-all">~</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤀</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤁</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤂</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤃</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤄</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤅</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤆</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤇</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤈</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤉</button>
+<button class="col-span-7 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase tracking-tighter">Backspace</button>
+<!-- Row 2 -->
+<button class="col-span-4 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Tab</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤊</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤋</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤌</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤍</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤎</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤏</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤐</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤑</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤒</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤓</button>
+<button class="col-span-6 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">\</button>
+<!-- Row 3 -->
+<button class="col-span-5 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Caps</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤔</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤕</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤖</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤗</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤘</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤙</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤚</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤛</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤜</button>
+<button class="col-span-8 bg-primary text-on-primary rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Enter</button>
+<!-- Row 4 -->
+<button class="col-span-7 bg-primary text-on-primary rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Shift</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤝</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤞</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤟</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤠</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤡</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤢</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤣</button>
+<button class="col-span-3 bg-white border border-outline-variant rounded h-10 flex items-center justify-center adlam-text text-lg">𞤤</button>
+<button class="col-span-9 bg-primary text-on-primary rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Shift</button>
+<!-- Row 5 -->
+<button class="col-span-4 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Ctrl</button>
+<button class="col-span-4 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Cmd</button>
+<button class="col-span-4 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Alt</button>
+<button class="col-span-16 bg-white border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase tracking-widest">Space</button>
+<button class="col-span-4 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Alt</button>
+<button class="col-span-4 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Cmd</button>
+<button class="col-span-4 bg-surface-container-highest border border-outline-variant rounded h-10 flex items-center justify-center text-[10px] font-bold uppercase">Ctrl</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex flex-row-reverse justify-around items-center py-2 px-2 bg-surface border-t border-outline-variant z-50 shadow-lg">
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-bold">Lessons</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">keyboard</span>
+<span class="text-[10px] font-bold">Typing</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-4 py-1" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-[10px] font-bold">Resources</span>
+</a>
+</nav>
+<script>
+    // Micro-interaction for keyboard
+    const keys = document.querySelectorAll('.keyboard-grid button');
+    const scoreDisplay = document.getElementById('score-display');
+    let score = 0;
+
+    keys.forEach(key => {
+        key.addEventListener('click', () => {
+            // Visual feedback
+            key.classList.add('bg-primary-container');
+            setTimeout(() => key.classList.remove('bg-primary-container'), 100);
+            
+            // Score increment (simulation)
+            if (!['Backspace', 'Tab', 'Caps', 'Enter', 'Shift', 'Ctrl', 'Cmd', 'Alt', 'Space'].includes(key.innerText)) {
+                score += 10;
+                scoreDisplay.innerText = score;
+            }
+        });
+    });
+</script>
+</body></html>
