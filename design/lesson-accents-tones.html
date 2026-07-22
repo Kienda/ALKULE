@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ADLaM Learner - Accent &amp; Tone Marks</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#434750",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e2e2e5",
+                        "surface-container-high": "#e8e8ea",
+                        "secondary-container": "#e0e2ee",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9fc",
+                        "on-primary-fixed": "#00105c",
+                        "secondary-fixed-dim": "#c4c6d2",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f0f0f3",
+                        "surface-variant": "#e2e2e5",
+                        "on-primary-fixed-variant": "#293ca0",
+                        "secondary": "#5b5e68",
+                        "error": "#ba1a1a",
+                        "tertiary": "#643900",
+                        "surface-dim": "#dadadc",
+                        "primary-fixed-dim": "#bac3ff",
+                        "tertiary-container": "#854d00",
+                        "outline": "#757684",
+                        "on-secondary-fixed": "#181b24",
+                        "surface-container-low": "#f3f3f6",
+                        "primary": "#24389c",
+                        "on-error": "#ffffff",
+                        "surface-container": "#eeeef0",
+                        "on-primary-container": "#cacfff",
+                        "background": "#f9f9fc",
+                        "on-secondary-container": "#61646e",
+                        "on-tertiary-fixed": "#2c1600",
+                        "tertiary-fixed": "#ffdcbe",
+                        "on-background": "#1a1c1e",
+                        "primary-container": "#3f51b5",
+                        "outline-variant": "#c5c5d4",
+                        "inverse-primary": "#bac3ff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "tertiary-fixed-dim": "#ffb870",
+                        "secondary-fixed": "#e0e2ee",
+                        "on-tertiary-container": "#ffc893",
+                        "on-surface": "#1a1c1e",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "primary-fixed": "#dee0ff",
+                        "surface": "#f9f9fc",
+                        "on-surface-variant": "#454652",
+                        "surface-tint": "#4355b9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "max-width": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-md": ["JetBrains Mono"],
+                        "adlam-display": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        /* Custom Scrollbar for Indigo theme */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f3f3f6; }
+        ::-webkit-scrollbar-thumb { background: #c5c5d4; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #757684; }
+
+        .adlam-text { font-family: 'Hanken Grotesk', sans-serif; } /* Placeholder for actual ADLaM font rendering */
+        
+        .rtl-mirror { transform: scaleX(-1); }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(197, 197, 212, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface w-full top-0 z-40 border-b border-outline-variant dark:border-outline flex flex-row-reverse justify-between items-center px-4 md:px-margin-desktop py-3 h-16 sticky">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="hidden md:block">
+<h1 class="font-headline-md text-primary dark:text-primary-fixed-dim font-bold">ADLaM Learner</h1>
+</div>
+</div>
+<nav class="hidden md:flex flex-row-reverse gap-8 items-center">
+<a class="text-primary dark:text-primary-fixed-dim font-medium transition-colors duration-200" href="#">Home</a>
+<div class="relative group">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors duration-200">
+                    Learn ADLaM <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Resources</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About</a>
+</nav>
+<button class="md:hidden text-primary dark:text-primary-fixed-dim">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="flex flex-1 relative max-w-screen-2xl mx-auto w-full">
+<!-- Sidebar Navigation (Right Aligned for RTL) -->
+<aside class="hidden lg:flex flex-col w-80 bg-surface-container-lowest border-l border-outline-variant h-[calc(100vh-64px)] sticky top-16 overflow-y-auto">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8 text-primary">
+<span class="material-symbols-outlined">school</span>
+<h2 class="font-headline-md text-headline-md">Learn ADLaM</h2>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="font-body-md">Introduction</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="font-body-md">Writing System</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="font-body-md">Alphabet</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-container text-on-primary-container font-semibold" href="#">
+<span class="material-symbols-outlined text-[20px]">radio_button_checked</span>
+<span class="font-body-md">Accents &amp; Tones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">radio_button_unchecked</span>
+<span class="font-body-md">Punctuation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">radio_button_unchecked</span>
+<span class="font-body-md">Greetings</span>
+</a>
+</nav>
+<div class="mt-12 p-4 bg-surface-container-low rounded-2xl border border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-3">YOUR PROGRESS</h3>
+<div class="h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-3/4 rounded-full"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2 text-left" dir="ltr">75% Complete</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 p-4 md:p-gutter lg:p-margin-desktop overflow-x-hidden">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-8 text-on-surface-variant font-label-md">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-xs rtl-mirror">chevron_left</span>
+<a class="hover:text-primary" href="#">Learn</a>
+<span class="material-symbols-outlined text-xs rtl-mirror">chevron_left</span>
+<span class="text-primary font-bold">Accent &amp; Tone Marks</span>
+</nav>
+<!-- Hero Section -->
+<section class="mb-12">
+<div class="relative overflow-hidden rounded-3xl bg-primary-container p-8 md:p-12 text-on-primary-container shadow-xl">
+
+<div class="relative z-10 max-w-2xl">
+<h2 class="font-headline-lg text-headline-lg mb-4">ADLaM Accent &amp; Tone Marks</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container/90">
+                            The ADLaM script uses specific diacritics to indicate vowel length, tone, and stress. Mastering these is crucial for correct pronunciation in Fulfulde.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Detailed Table Section -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">format_overline</span>
+<h3 class="font-headline-md text-headline-md">Reference Table</h3>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full border border-primary text-primary hover:bg-primary-container hover:text-white transition-all font-medium">
+<span class="material-symbols-outlined">download</span>
+<span>Download PDF</span>
+</button>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden border border-outline-variant shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline-variant">
+<th class="px-6 py-4 font-headline-md text-primary w-24">Mark</th>
+<th class="px-6 py-4 font-headline-md text-primary w-32">With Vowel</th>
+<th class="px-6 py-4 font-headline-md text-primary">ADLaM Name</th>
+<th class="px-6 py-4 font-headline-md text-primary">Example</th>
+<th class="px-6 py-4 font-headline-md text-primary">English Name</th>
+<th class="px-6 py-4 font-headline-md text-primary">Function</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-6 text-center">
+<div class="w-10 h-10 border-2 border-dashed border-outline-variant rounded-full mx-auto flex items-center justify-center">
+<span class="text-2xl font-bold">◌</span>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-3xl font-adlam-display text-primary">I</td>
+<td class="px-6 py-6 font-label-md text-tertiary">Base Vowel</td>
+<td class="px-6 py-6 text-2xl font-adlam-display">a</td>
+<td class="px-6 py-6 text-on-surface-variant">Unaccented Vowel</td>
+<td class="px-6 py-6">Normal tone, short duration.</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-6 text-center">
+<div class="w-10 h-10 border-2 border-dashed border-outline-variant rounded-full mx-auto flex items-center justify-center">
+<span class="text-2xl font-bold">◌̈</span>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-3xl font-adlam-display text-primary">Ï</td>
+<td class="px-6 py-6 font-label-md text-tertiary">Dieresis</td>
+<td class="px-6 py-6 text-2xl font-adlam-display">ä</td>
+<td class="px-6 py-6 text-on-surface-variant">Dieresis</td>
+<td class="px-6 py-6">Indicates high tone pronunciation.</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-6 text-center">
+<div class="w-10 h-10 border-2 border-dashed border-outline-variant rounded-full mx-auto flex items-center justify-center">
+<span class="text-2xl font-bold">◌̇</span>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-3xl font-adlam-display text-primary">İ</td>
+<td class="px-6 py-6 font-label-md text-tertiary">Dot Above</td>
+<td class="px-6 py-6 text-2xl font-adlam-display">ȧ</td>
+<td class="px-6 py-6 text-on-surface-variant">Dot Above</td>
+<td class="px-6 py-6">Doubled vowels (long duration).</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-6 text-center">
+<div class="w-10 h-10 border-2 border-dashed border-outline-variant rounded-full mx-auto flex items-center justify-center">
+<span class="text-2xl font-bold">◌̣</span>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-3xl font-adlam-display text-primary">Ị</td>
+<td class="px-6 py-6 font-label-md text-tertiary">Dot Below</td>
+<td class="px-6 py-6 text-2xl font-adlam-display">ạ</td>
+<td class="px-6 py-6 text-on-surface-variant">Dot Below</td>
+<td class="px-6 py-6">Represents vowel + N nasal sound.</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-6 text-center">
+<div class="w-10 h-10 border-2 border-dashed border-outline-variant rounded-full mx-auto flex items-center justify-center">
+<span class="text-2xl font-bold">◌̃</span>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-3xl font-adlam-display text-primary">Ĩ</td>
+<td class="px-6 py-6 font-label-md text-tertiary">Tilde</td>
+<td class="px-6 py-6 text-2xl font-adlam-display">ã</td>
+<td class="px-6 py-6 text-on-surface-variant">Tilde</td>
+<td class="px-6 py-6">Low tone or nasalized vowel.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Context Examples Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-20">
+<div class="md:col-span-2 glass-card rounded-3xl p-8 border-l-4 border-l-primary">
+<h4 class="font-headline-md text-primary mb-4">Usage in Context</h4>
+<p class="text-on-surface-variant mb-6">Observe how the tone marks change the meaning of similar looking words. In ADLaM, the pitch is as important as the letters themselves.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant">
+<span class="text-3xl font-adlam-display block mb-1">bä</span>
+<span class="font-label-md text-sm opacity-60">High Tone</span>
+<p class="mt-2 text-sm">Action A</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant">
+<span class="text-3xl font-adlam-display block mb-1">bã</span>
+<span class="font-label-md text-sm opacity-60">Low Tone</span>
+<p class="mt-2 text-sm">Action B</p>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-8 bg-tertiary-fixed text-on-tertiary-fixed-variant flex flex-col justify-center">
+<span class="material-symbols-outlined text-4xl mb-4">tips_and_updates</span>
+<h4 class="font-headline-md mb-2">Pro Tip</h4>
+<p class="text-body-md">Tone marks are always placed directly above or below the vowel they modify, never between characters.</p>
+</div>
+</section>
+</main>
+</div>
+<!-- Bottom Navigation (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant flex flex-row-reverse justify-around items-center py-2 px-2 z-50">
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container dark:bg-primary rounded-xl px-4 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-4 py-1">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-label-md">Lessons</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-4 py-1">
+<span class="material-symbols-outlined">keyboard</span>
+<span class="text-[10px] font-label-md">Typing</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-4 py-1">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-[10px] font-label-md">Resources</span>
+</button>
+</footer>
+<!-- FAB for Quick Practice -->
+<button class="fixed bottom-24 right-8 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform duration-200 z-40">
+<span class="material-symbols-outlined text-3xl">edit</span>
+</button>
+<script>
+        // Simple micro-interaction for table rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.add('bg-primary-container/10');
+                setTimeout(() => {
+                    row.classList.remove('bg-primary-container/10');
+                }, 300);
+            });
+        });
+
+        // Theme toggle logic (Placeholder for visual demo)
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</body></html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ff"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ADLaM Education | Resources</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#4355b9",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "secondary-fixed": "#e0e2ee",
+                    "on-secondary-fixed": "#181b24",
+                    "background": "#f9f9fc",
+                    "on-primary-container": "#cacfff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#454652",
+                    "surface-container-low": "#f3f3f6",
+                    "primary": "#24389c",
+                    "on-secondary-fixed-variant": "#434750",
+                    "tertiary-fixed-dim": "#ffb870",
+                    "tertiary": "#643900",
+                    "secondary": "#5b5e68",
+                    "outline": "#757684",
+                    "inverse-primary": "#bac3ff",
+                    "tertiary-fixed": "#ffdcbe",
+                    "inverse-surface": "#2f3133",
+                    "surface-dim": "#dadadc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1e",
+                    "surface-container-highest": "#e2e2e5",
+                    "primary-container": "#3f51b5",
+                    "surface-container-high": "#e8e8ea",
+                    "secondary-container": "#e0e2ee",
+                    "on-primary-fixed-variant": "#293ca0",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e2e2e5",
+                    "secondary-fixed-dim": "#c4c6d2",
+                    "on-tertiary-fixed": "#2c1600",
+                    "surface-container": "#eeeef0",
+                    "primary-fixed": "#dee0ff",
+                    "on-secondary-container": "#61646e",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#854d00",
+                    "surface-bright": "#f9f9fc",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9fc",
+                    "on-background": "#1a1c1e",
+                    "outline-variant": "#c5c5d4",
+                    "on-tertiary-container": "#ffc893",
+                    "primary-fixed-dim": "#bac3ff",
+                    "on-primary-fixed": "#00105c",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "max-width": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "adlam-display": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9fc;
+            font-family: 'Hanken Grotesk', sans-serif;
+            color: #1a1c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .rtl-flip {
+            transform: scaleX(-1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 226, 229, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant fixed top-0 w-full z-50">
+<div class="flex flex-row-reverse justify-between items-center px-margin-desktop w-full max-w-max-width mx-auto h-16">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-secondary font-medium hover:text-primary transition-colors text-label-md font-label-md" href="#">Home</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors text-label-md font-label-md" href="#">Lessons</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors text-label-md font-label-md" href="#">Typing</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 text-label-md font-label-md" href="#">Resources</a>
+</nav>
+<div class="text-headline-md font-headline-md font-bold text-primary">
+                ADLaM Education
+            </div>
+</div>
+</header>
+<main class="pt-24 pb-16 px-margin-desktop max-w-max-width mx-auto">
+<!-- Hero Section -->
+<section class="mb-16 relative overflow-hidden rounded-xl bg-primary text-on-primary p-12">
+<div class="relative z-10 max-w-2xl">
+<h1 class="text-headline-lg font-headline-lg mb-4">ADLaM Library &amp; Resources</h1>
+<p class="text-body-lg font-body-lg opacity-90 mb-8">
+                    Explore our curated collection of educational materials, digital tools, and cultural artifacts designed to preserve and promote the ADLaM script.
+                </p>
+<div class="flex gap-4">
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                        Get Font Pack
+                    </button>
+<button class="border border-on-primary border-opacity-30 px-6 py-3 rounded-lg font-bold hover:bg-white hover:bg-opacity-10 transition-all">
+                        Browse Books
+                    </button>
+</div>
+</div>
+<!-- Decorative WebGL-like shader effect placeholder -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary via-transparent to-primary-container"></div>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="bento-grid">
+<!-- Featured Book Series (Asymmetric Layout) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter">
+<div class="flex items-center justify-between">
+<h2 class="text-headline-md font-headline-md text-primary">ADLaM Book Series</h2>
+<a class="text-primary font-bold flex items-center gap-1 hover:underline" href="#">
+                        View All
+                        <span class="material-symbols-outlined rtl-flip" data-icon="arrow_back">arrow_back</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Book Card 1 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-lg transition-all">
+<div class="aspect-[1.69] bg-surface-container overflow-hidden">
+<img alt="Book Volume 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdrDXQz489fa38laKurx30dUmnLL8Yphdoo0NFIqtG_62Yki4w_Z2FeFJkWctcEe5hhpDOYgDYl9cyOV6r0gA1IOKu5v7K5RtESWYSgslhVtgosZzMsLbMaO_MQ1XV5LatBTQvujkTF5Z3bj5EV-rPds3rtGajQes_eXBtRat-5PLtlZ-7ghWLkdJQFEKW7UQNzWAWdVGATFF45EF-YPn5OK9fmiKDhYZF_UhnElCbbQhMuFROcDL0nf55wCGtY4SaQZtgRVnv-ilT"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-body-lg font-bold">ADLaM Book Series - Volume 1</h3>
+<span class="bg-secondary-fixed text-primary px-3 py-1 rounded-full text-label-md font-label-md">Beginner</span>
+</div>
+<p class="text-on-surface-variant text-body-md mb-6">Introduction to the fundamental glyphs and phonetics of the ADLaM script, designed for first-time learners.</p>
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-outline">Digital PDF • 4.2 MB</span>
+<button class="text-primary font-bold flex items-center gap-1">
+                                    Read Online
+                                    <span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-lg transition-all">
+<div class="aspect-[1.69] bg-surface-container overflow-hidden">
+<img alt="Book Volume 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzsa68cmhSmkvLglvDYqD82lhC0zXso8i_641ymRMVMBh9vJFZSvxgwH3sejaGWuPc2yKINcWgYD_gylME2Kza1VRtzl4R4iNPqePMYxNl3cKwk9PZFnMB7x0dmT3AYO2fqtnzROKB9E_EZBSaQc8gD9n3rQO3o0bekxc4d1EMahoTHE7zSNj4wgVg9n63sAKAEzjQkMIHXYao8Z_Mq4OY2cHCZvOZ8sWptT2Vsh__1sMCr52j2-Y3NIylbtBno1h1fT_Ab5qQJUkL"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-body-lg font-bold">ADLaM Book Series - Volume 2</h3>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-label-md font-label-md">Intermediate</span>
+</div>
+<p class="text-on-surface-variant text-body-md mb-6">Transitioning to complex sentence structures and historical calligraphy styles of the Fula language.</p>
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-outline">Digital PDF • 5.8 MB</span>
+<button class="text-primary font-bold flex items-center gap-1">
+                                    Read Online
+                                    <span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Digital Resources Sidebar -->
+<aside class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="glass-card p-8 rounded-xl border border-outline-variant h-full">
+<h2 class="text-headline-md font-headline-md text-primary mb-6">Digital Toolkit</h2>
+<div class="space-y-6">
+<!-- Resource Item -->
+<div class="flex items-start gap-4 group cursor-pointer">
+<div class="bg-primary-container p-3 rounded-lg text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="font_download">font_download</span>
+</div>
+<div>
+<h4 class="font-bold text-body-md">Kigelia ADLaM Font</h4>
+<p class="text-on-surface-variant text-label-md">Professional font optimized for high-resolution displays and mobile devices.</p>
+<a class="text-primary font-bold text-label-md mt-2 inline-block" href="#">Download .OTF</a>
+</div>
+</div>
+<div class="h-px bg-outline-variant"></div>
+<!-- Resource Item -->
+<div class="flex items-start gap-4 group cursor-pointer">
+<div class="bg-secondary-container p-3 rounded-lg text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="keyboard">keyboard</span>
+</div>
+<div>
+<h4 class="font-bold text-body-md">Unicode Keyboard Driver</h4>
+<p class="text-on-surface-variant text-label-md">Standardized keyboard layouts for Windows, macOS, and Linux systems.</p>
+<a class="text-primary font-bold text-label-md mt-2 inline-block" href="#">Get Drivers</a>
+</div>
+</div>
+<div class="h-px bg-outline-variant"></div>
+<!-- Resource Item -->
+<div class="flex items-start gap-4 group cursor-pointer">
+<div class="bg-tertiary-fixed p-3 rounded-lg text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</div>
+<div>
+<h4 class="font-bold text-body-md">Developer API</h4>
+<p class="text-on-surface-variant text-label-md">Integrate ADLaM transliteration services into your own applications.</p>
+<a class="text-primary font-bold text-label-md mt-2 inline-block" href="#">View Docs</a>
+</div>
+</div>
+</div>
+<div class="mt-12 bg-primary p-6 rounded-lg text-on-primary">
+<h4 class="font-bold mb-2">Need Support?</h4>
+<p class="text-label-md mb-4">Our technical team is available to help with installation and integration issues.</p>
+<button class="w-full bg-white text-primary py-2 rounded font-bold text-label-md">Contact Helpdesk</button>
+</div>
+</div>
+</aside>
+<!-- Fakoli Artists Section -->
+<section class="col-span-12 mt-8">
+<div class="flex items-center gap-4 mb-8">
+<h2 class="text-headline-md font-headline-md text-primary">Fakoli Artists Gallery</h2>
+<div class="h-px flex-1 bg-outline-variant"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+<!-- Gallery Item 1 -->
+<div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A high-quality photograph of traditional West African Fulani jewelry made of intricate gold and silver filigree. The artifacts are displayed on a clean, minimalist white surface with soft, museum-style directional lighting. The shot uses a shallow depth of field to emphasize the craftsmanship. The overall color palette is dominated by warm metallic tones and soft indigos, aligning with a professional educational aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvjPfWMn63mr1n2YX4QHU_e-oo8N6s-eCkHGKAEJrdl3f06ka9ug1IyVjuaDDhvMGIVBft4izEGbwNumQ7MnnvlFDtuiA6-CjFMfjMWWlIvwmN3FmHZV2OqGUW96_RWynf7nC_ECt3ZycES-6YZsfr7bKf7LtY2sIVrMg1CNxWtfiCCkA6q2o7f7q7uTc741oD-hxy3_TY8TetkchGjS7WYUDb_JwO8K9MPOWc3JtPRcgDnsu7BpTCA-36IeBBCgp6P5AsfWzg11GQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold text-label-md">Golden Heritage</p>
+<p class="text-white/70 text-xs">Cultural Artifact #01</p>
+</div>
+</div>
+<!-- Gallery Item 2 -->
+<div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A close-up photograph of a hand-woven indigo textile from the Fula culture, featuring complex geometric patterns that echo the strokes of the ADLaM script. The fabric has a rich texture and a deep navy blue hue with subtle white embroidery. The lighting is natural and soft, highlighting the weave. The composition is artistic and clean, suitable for a scholarly cultural gallery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxuuKWnQUQpltE1glmg01FTE_85Uo7qo7fyuBd75l6parwBwVJi0KLFHOWsg_p4hhli-TtYZlHo0tjVUGWp6lxK8rx-72Zd3f8TbUhyxqZlefy2cFQ2nmR1D-iFyIjburfIk-w3lJbvqXMJrO9wloHb_pf1ZYmc3jSqxaChZPxyuI3i9bd_40RXe3nzLMfTJJQO9SuKj1nkbSVYzJkb65J7LOTert95V9E1JNBBFM5WqoSOr8Bje-M_v6UAWqGqySvImj4MMcRSzm4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold text-label-md">Woven Narrative</p>
+<p class="text-white/70 text-xs">Textile Pattern #14</p>
+</div>
+</div>
+<!-- Gallery Item 3 -->
+<div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="An artistic shot of a traditional wooden calligraphy pen and a bottle of dark ink resting on a sheet of aged parchment with ADLaM script elegantly written. The setting is a bright, modern studio with clean lines and soft daylight coming from the side. The image represents the bridge between ancient tradition and modern scholarship. The colors are earthy browns, deep indigos, and clean whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDouwbRdf8l2lJFvhw8l_rvLEsIOJnQpDryT5RZmdMFegaH6Bi7_wfGymy5ijng5-3PZ-mfbDqvcMZ7t4W1U3VsVTvb876vlA9XyouExIAVI15CxQGUrnsilKvhp8KAT-8Lbj3F14Uds3HEZT71-q9bA0uWxpM1weB9PJQau6C0wfIlNshEOVZ4rM9IxJf6FE2nLJsSx2SbXlDJIhCVDh4cg94KglN_AuodO9B83HxR2J8rZC4lVLZaVulbTiFFZKH2FtdCbAOnJRlS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold text-label-md">Scribe's Tools</p>
+<p class="text-white/70 text-xs">Writing Utensils</p>
+</div>
+</div>
+<!-- Gallery Item 4 -->
+<div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A photograph of a carved wooden calabash bowl featuring intricate ADLaM engravings around its rim. The bowl is positioned in a modern, well-lit academic setting with a soft-focus library background. The lighting is warm and inviting, emphasizing the deep texture of the wood and the precision of the script carving. The aesthetic is sophisticated, blending history with contemporary design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV3qcxkHe1vFfcsQwkaDyJ5nbDBkfRovf7qfgclKS7BtOmIUZUx-eiyxuSZ7z5u1bO5QJaeuSTd0JZ1DIPaAwn1lf5tCUo5QAplf-b1DF5vRiEDXwjjdnzsm7YVHE4-FYjFQX04V2xDPLRFSfsc2uT5VSspY82FOONlpFuP3fYwCLUnV_llxnXGLzGm3ZrGiw1vjPUlyk28zkW6skMddaLCYAbRgVOzaUNwZYHnQ1Yy1UrIs7YAvRhBEM4Rz9x0bwSW3f9BLxu8mu6"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold text-label-md">Engraved Vessel</p>
+<p class="text-white/70 text-xs">Decorative Art</p>
+</div>
+</div>
+<!-- Gallery Item 5 -->
+<div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A modern digital art piece displaying stylized ADLaM characters floating in a fluid, indigo-colored abstract space. The art uses glowing gradients and sharp, clean typography. The lighting is high-key and atmospheric, creating a sense of digital progress and cultural pride. This image represents the modern evolution of the script in the digital age, using a palette of deep indigo and soft whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKoCQnNftaOL4bmD2AlPYpW7dT2PF5-Blo01Fpd2IDxiXLDgUePA6IEVP7-AOBaVijtPKv0k2DdKze3C4rnrNLBvc_SR9NZ08q95oKkBFpzzmB7D_gDpNcSOgh-tR7GXF2hBcbij7F_iCfJ-y28Fds-72pi8sYJeEc9bZWoud_aYx4yWchgdSeODPrnGd-sOmU941ZJRrXMvqeJGBUGLFgpeTYG5gzkjeTRCdtYnOe3i7YKL2abDRqhc6UASNcACHXXcmahPkkkCXT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold text-label-md">Digital Script</p>
+<p class="text-white/70 text-xs">Modern Art</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant py-12 px-margin-desktop">
+<div class="max-w-max-width mx-auto flex flex-col md:flex-row-reverse justify-between items-start gap-8">
+<div class="max-w-xs">
+<h3 class="text-primary font-bold text-body-lg mb-4">ADLaM Education</h3>
+<p class="text-on-surface-variant text-label-md">
+                    Dedicated to the revitalization and digital empowerment of the ADLaM script and Fulfulde language learners worldwide.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-12">
+<div>
+<h4 class="font-bold text-label-md mb-4 uppercase tracking-wider">Learning</h4>
+<ul class="space-y-2 text-on-surface-variant text-label-md">
+<li><a class="hover:text-primary" href="#">Curriculum</a></li>
+<li><a class="hover:text-primary" href="#">Certifications</a></li>
+<li><a class="hover:text-primary" href="#">Workshops</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-label-md mb-4 uppercase tracking-wider">Community</h4>
+<ul class="space-y-2 text-on-surface-variant text-label-md">
+<li><a class="hover:text-primary" href="#">Fakoli Artists</a></li>
+<li><a class="hover:text-primary" href="#">Discussion Forum</a></li>
+<li><a class="hover:text-primary" href="#">Contribute</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-max-width mx-auto mt-12 pt-8 border-t border-outline-variant flex flex-col md:flex-row-reverse justify-between items-center gap-4">
+<p class="text-outline text-label-md">© 2024 ADLaM Education. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-outline hover:text-primary" href="#"><span class="material-symbols-outlined" data-icon="language">language</span></a>
+<a class="text-outline hover:text-primary" href="#"><span class="material-symbols-outlined" data-icon="public">public</span></a>
+<a class="text-outline hover:text-primary" href="#"><span class="material-symbols-outlined" data-icon="mail">mail</span></a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for hover effects
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

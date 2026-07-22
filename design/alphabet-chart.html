@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ff"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ADLaM Education - Alphabet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#4355b9",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "secondary-fixed": "#e0e2ee",
+                    "on-secondary-fixed": "#181b24",
+                    "background": "#f9f9fc",
+                    "on-primary-container": "#cacfff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#454652",
+                    "surface-container-low": "#f3f3f6",
+                    "primary": "#24389c",
+                    "on-secondary-fixed-variant": "#434750",
+                    "tertiary-fixed-dim": "#ffb870",
+                    "tertiary": "#643900",
+                    "secondary": "#5b5e68",
+                    "outline": "#757684",
+                    "inverse-primary": "#bac3ff",
+                    "tertiary-fixed": "#ffdcbe",
+                    "inverse-surface": "#2f3133",
+                    "surface-dim": "#dadadc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1e",
+                    "surface-container-highest": "#e2e2e5",
+                    "primary-container": "#3f51b5",
+                    "surface-container-high": "#e8e8ea",
+                    "secondary-container": "#e0e2ee",
+                    "on-primary-fixed-variant": "#293ca0",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e2e2e5",
+                    "secondary-fixed-dim": "#c4c6d2",
+                    "on-tertiary-fixed": "#2c1600",
+                    "surface-container": "#eeeef0",
+                    "primary-fixed": "#dee0ff",
+                    "on-secondary-container": "#61646e",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#854d00",
+                    "surface-bright": "#f9f9fc",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9fc",
+                    "on-background": "#1a1c1e",
+                    "outline-variant": "#c5c5d4",
+                    "on-tertiary-container": "#ffc893",
+                    "primary-fixed-dim": "#bac3ff",
+                    "on-primary-fixed": "#00105c",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "max-width": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "adlam-display": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9fc;
+            font-family: 'Hanken Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        .adlam-font {
+            /* Fallback for ADLaM display if local fonts missing, using Hanken for container structure */
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for educational cleanliness */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f3f3f6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5c5d4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #757684;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-outline-variant">
+<div class="flex flex-row-reverse justify-between items-center px-margin-desktop w-full max-w-max-width mx-auto h-16">
+<!-- Brand -->
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary">ADLaM Education</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex flex-row-reverse items-center gap-8">
+<a class="text-secondary font-medium hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 cursor-pointer active:opacity-80" href="#">Lessons</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Typing</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Resources</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<div class="flex pt-16 min-h-screen">
+<!-- Main Content Area -->
+<main class="flex-grow px-margin-desktop py-base max-w-[calc(1280px-256px)] mx-auto">
+<!-- Page Header -->
+<div class="mt-8 mb-12">
+<h1 class="text-headline-lg font-headline-lg text-on-surface mb-4">Characters of ADLaM Alphabet</h1>
+<!-- Information Box (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="md:col-span-2 p-8 bg-surface-container-lowest border border-outline-variant rounded-xl flex items-start gap-6">
+<div class="bg-primary-container p-4 rounded-lg">
+<span class="material-symbols-outlined text-on-primary-container text-4xl" data-icon="info">info</span>
+</div>
+<div>
+<h2 class="text-headline-md font-headline-md text-primary mb-2">Script Fundamentals</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
+                                The ADLaM script is a modern writing system created for the Fulfulde language. It consists of <span class="font-bold text-primary">28 letters</span> and is written strictly from <span class="font-bold text-primary underline decoration-tertiary">right to left</span>. Unlike many other scripts, ADLaM features both upper and lower case forms, though they often share similar visual structures.
+                            </p>
+</div>
+</div>
+<div class="bg-tertiary-fixed p-8 border border-outline-variant rounded-xl flex flex-col justify-center items-center text-center">
+<span class="text-label-md font-label-md uppercase tracking-widest text-on-tertiary-fixed-variant mb-2">Current Focus</span>
+<div class="text-adlam-display font-adlam-display text-tertiary-container mb-4">𞤀 𞤁 𞤂 𞤃</div>
+<p class="text-body-md font-body-md text-on-tertiary-fixed-variant">Mastering the core phonetic sounds of the Pulaar people.</p>
+</div>
+</div>
+</div>
+<!-- Alphabet Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-base mb-20">
+<!-- Character Cards (Generated for 28 slots) -->
+<!-- Note: Using placeholder text for ADLaM characters as font rendering depends on local OS support, but styled per instructions -->
+<script>
+                    const adlamChars = [
+                        { l: "𞤀", n: "Alif", p: "a" }, { l: "𞤁", n: "Daali", p: "d" }, { l: "𞤂", n: "Laam", p: "l" }, { l: "𞤃", n: "Miim", p: "m" },
+                        { l: "𞤄", n: "Ba", p: "b" }, { l: "𞤅", n: "Sinnyiiyee", p: "s" }, { l: "𞤆", n: "Pe", p: "p" }, { l: "𞤇", n: "Bhe", p: "bh" },
+                        { l: "𞤈", n: "Ra", p: "r" }, { l: "𞤉", n: "E", p: "e" }, { l: "𞤊", n: "Fa", p: "f" }, { l: "𞤋", n: "I", p: "i" },
+                        { l: "𞤌", n: "O", p: "o" }, { l: "𞤍", n: "Dha", p: "dh" }, { l: "𞤎", n: "Yee", p: "y" }, { l: "𞤏", n: "Wawu", p: "w" },
+                        { l: "𞤐", n: "Nuun", p: "n" }, { l: "𞤑", n: "Kaf", p: "k" }, { l: "𞤒", n: "Ya", p: "y" }, { l: "𞤓", n: "U", p: "u" },
+                        { l: "𞤔", n: "Jim", p: "j" }, { l: "𞤕", n: "Chi", p: "chi" }, { l: "𞤖", n: "Ha", p: "h" }, { l: "𞤗", n: "Gha", p: "gh" },
+                        { l: "𞤘", n: "Ga", p: "g" }, { l: "𞤙", n: "Nya", p: "ny" }, { l: "𞤚", n: "Tu", p: "t" }, { l: "𞤛", n: "Nha", p: "nh" }
+                    ];
+
+                    document.write(adlamChars.map(char => `
+                        <div class="group bg-surface-container-lowest border border-outline-variant p-6 rounded-lg flex flex-col items-center justify-center transition-all duration-300 hover:border-primary hover:shadow-[0px_4px_20px_rgba(36,56,156,0.08)] cursor-pointer active:scale-95">
+                            <div class="text-adlam-display font-adlam-display text-primary group-hover:scale-110 transition-transform mb-4">${char.l}</div>
+                            <div class="text-label-md font-label-md text-on-surface-variant">${char.n}</div>
+                            <div class="text-body-md font-body-md font-bold text-secondary-fixed-variant mt-1">/${char.p}/</div>
+                        </div>
+                    `).join(''));
+                </script>
+</div>
+<!-- Reference Section -->
+<section class="mb-20">
+<div class="rounded-xl overflow-hidden border border-outline-variant relative h-[400px]">
+<img alt="Educational Reference" class="absolute inset-0 w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBD2rXScWnzDV4BQrA4taKF58GI8X6oIrF57lMZCLg-3cUoydjuGwX-uOu4UvCA7CNS1CSVlydtIqZPQyET1h1HPfwpyH7FOwNB8NE2t7MjtS6Kisy8BGzwNIGcgDctn_HUek091A5PYoQsSGk8hjtSomFzw135zp5zOMC_HGvZ4tvYjQg_dZhvBNBBADPpa7RMBYOX4ELV4bueyfwi6_CKv2E-p2LPJGe1GdT2aTFhpzsiAMk07LAIdP25YGMqBD8P3j4aH1lxolq"/>
+<div class="relative z-10 p-12 flex flex-col justify-center h-full max-w-2xl">
+<span class="text-label-md font-label-md text-primary mb-4">LEARNING RESOURCE</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-6">Mastering the stroke order and vocalization</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-8">
+                            Each character has a unique spiritual and phonetic weight. Our interactive lessons guide you through the penmanship required for each ADLaM character, ensuring cultural authenticity.
+                        </p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-bold hover:bg-primary-container transition-colors">Start Practice</button>
+<button class="border border-primary text-primary px-8 py-3 rounded-full font-bold hover:bg-primary-fixed transition-colors">View Guide</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- SideNavBar -->
+<aside class="fixed right-0 top-16 w-64 h-[calc(100vh-64px)] bg-surface-container-low border-l border-outline-variant z-40 overflow-y-auto">
+<div class="flex flex-col gap-base p-4 h-full rtl">
+<!-- Header -->
+<div class="mb-6 px-3">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="school">school</span>
+</div>
+<div>
+<div class="text-label-md font-label-md font-black text-on-surface uppercase">ADLaM Basics</div>
+<div class="text-body-md font-body-md text-secondary">Module 1: Intro</div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-2 rounded-lg text-label-md font-label-md hover:opacity-90 transition-all active:scale-95">Resume Lesson</button>
+</div>
+<!-- Tabs -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="text-label-md font-label-md">Writing System</span>
+</a>
+<a class="flex items-center gap-4 bg-primary text-on-primary rounded-lg p-3 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="font_download">font_download</span>
+<span class="text-label-md font-label-md">Alphabet</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="record_voice_over">record_voice_over</span>
+<span class="text-label-md font-label-md">Vowels</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+<span class="text-label-md font-label-md">Consonants</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="pin">pin</span>
+<span class="text-label-md font-label-md">Numerals</span>
+</a>
+</nav>
+<!-- Progress indicator at bottom -->
+<div class="mt-auto p-4 bg-surface rounded-lg border border-outline-variant">
+<div class="flex justify-between text-label-md font-label-md mb-2">
+<span>Overall Progress</span>
+<span>42%</span>
+</div>
+<div class="w-full bg-secondary-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[42%] rounded-full"></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.active\\:scale-95').forEach(el => {
+            el.addEventListener('mousedown', () => el.style.transform = 'scale(0.95)');
+            el.addEventListener('mouseup', () => el.style.transform = 'scale(1)');
+            el.addEventListener('mouseleave', () => el.style.transform = 'scale(1)');
+        });
+    </script>
+</body></html>

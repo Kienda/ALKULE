@@ -1,8 +1,10 @@
 import { spawn } from "node:child_process";
+import { createRequire } from "node:module";
 
 const production = process.env.NODE_ENV === "production";
 const frontendPort = process.env.PORT || "3000";
-const nextCli = "node_modules/next/dist/bin/next";
+const require = createRequire(import.meta.url);
+const nextCli = require.resolve("next/dist/bin/next");
 const env = { ...process.env, DOTENV_CONFIG_QUIET: "true" };
 const api = spawn(process.execPath, ["Backend/index.mjs"], { stdio: "inherit", env });
 const frontend = spawn(process.execPath, [nextCli, production ? "start" : "dev", ...(production ? [] : ["--webpack"]), "-p", frontendPort], { stdio: "inherit", env });
