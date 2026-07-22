@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RoleName {
+  owner
+  admin
+  instructor
+  moderator
+  learner
+}
+
+enum AdminPermissionName {
+  manage_users
+  manage_instructors
+  manage_courses
+  manage_content
+  manage_orders
+  manage_refunds
+  manage_certificates
+  manage_community
+  manage_notifications
+  view_audit_logs
+}
+
+enum UserStatus {
+  active
+  suspended
+  deactivated
+}
+
+model User {
+  id              String    @id @default(uuid())
+  email           String    @unique
+  passwordHash    String
+  name            String
+  status          UserStatus @default(active)
+  preferredLocale String    @default("en")
+  timezone        String?
+  emailVerifiedAt DateTime?
+  sessionVersion  Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  roles            UserRole[]
+  adminPermissions AdminPermission[]
+  progress         TypingProgress?
+  auditLogsAsActor AuditLog[]        @relation("AuditLogActor")
+
+  @@index([status])
+}
+
+model UserRole {
+  id        String    @id @default(uuid())
+  userId    String
+  role      RoleName
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, role])
+  @@index([role])
+}
+
+model AdminPermission {
+  id          String               @id @default(uuid())
+  userId      String
+  permission  AdminPermissionName
+  grantedBy   String?
+  grantedAt   DateTime             @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, permission])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  actorId    String?
+  action     String
+  targetType String?
+  targetId   String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  actor User? @relation("AuditLogActor", fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([action])
+  @@index([targetType, targetId])
+  @@index([createdAt])
+}
+
+model TypingProgress {
+  userId    String   @id
+  score     Int      @default(0)
+  attempts  Int      @default(0)
+  correct   Int      @default(0)
+  streak    Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
