@@ -1,0 +1,281 @@
+<!DOCTYPE html><html class="light" dir="rtl" lang="ff" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ADLaM Education - Writing System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#4355b9",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "secondary-fixed": "#e0e2ee",
+                    "on-secondary-fixed": "#181b24",
+                    "background": "#f9f9fc",
+                    "on-primary-container": "#cacfff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#454652",
+                    "surface-container-low": "#f3f3f6",
+                    "primary": "#24389c",
+                    "on-secondary-fixed-variant": "#434750",
+                    "tertiary-fixed-dim": "#ffb870",
+                    "tertiary": "#643900",
+                    "secondary": "#5b5e68",
+                    "outline": "#757684",
+                    "inverse-primary": "#bac3ff",
+                    "tertiary-fixed": "#ffdcbe",
+                    "inverse-surface": "#2f3133",
+                    "surface-dim": "#dadadc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1e",
+                    "surface-container-highest": "#e2e2e5",
+                    "primary-container": "#3f51b5",
+                    "surface-container-high": "#e8e8ea",
+                    "secondary-container": "#e0e2ee",
+                    "on-primary-fixed-variant": "#293ca0",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e2e2e5",
+                    "secondary-fixed-dim": "#c4c6d2",
+                    "on-tertiary-fixed": "#2c1600",
+                    "surface-container": "#eeeef0",
+                    "primary-fixed": "#dee0ff",
+                    "on-secondary-container": "#61646e",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#854d00",
+                    "surface-bright": "#f9f9fc",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9fc",
+                    "on-background": "#1a1c1e",
+                    "outline-variant": "#c5c5d4",
+                    "on-tertiary-container": "#ffc893",
+                    "primary-fixed-dim": "#bac3ff",
+                    "on-primary-fixed": "#00105c",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "max-width": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "adlam-display": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "adlam-display": ["48px", {"lineHeight": "60px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9fc;
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+        .rtl-flip {
+            transform: scaleX(-1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(186, 195, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="text-on-surface overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-0 z-50 bg-surface border-b border-outline-variant">
+<div class="flex flex-row-reverse justify-between items-center px-margin-desktop w-full max-w-max-width mx-auto h-16">
+<!-- Brand -->
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary">ADLaM Education</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex gap-8">
+<a class="text-secondary font-medium hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors cursor-pointer active:opacity-80" href="#">Lessons</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Typing</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Resources</a>
+</nav>
+<!-- Trailing Icon -->
+<div class="flex items-center">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-all cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-row min-h-screen pt-16">
+<!-- Main Content Area (Canvas) -->
+<main class="flex-grow p-base md:p-margin-desktop">
+<div class="max-w-4xl mx-auto space-y-gutter">
+<!-- History & Origin Section -->
+<section class="space-y-base">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm" data-icon="history">history</span>
+<span class="">HISTORY &amp; ORIGIN</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 space-y-4">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight leading-tight">
+                                𞤀𞤁𞤂𞤃: The Gift of the <br><span class="text-tertiary">Barry Brothers</span>
+</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
+                                Created in the late 1980s in N'Zérékoré, Guinea, the ADLaM script was born from the vision of Ibrahima and Abdoulaye Barry. Observing that the Fulani people lacked a writing system specifically tailored to the phonetics of their language, Fulfulde, the young brothers spent years refining these unique characters.
+                            </p>
+<div class="p-4 bg-primary-fixed rounded-xl border border-outline-variant">
+<p class="text-on-primary-fixed italic font-body-md text-body-md">
+                                    "Alkule Dandayɗe Leñol Mulugol" — The alphabet that protects the people from vanishing.
+                                </p>
+</div>
+</div>
+<div class="md:col-span-5 relative group">
+
+<div class="relative overflow-hidden rounded-xl border border-outline-variant bg-surface-container-high aspect-[4/5]">
+<img class="w-full h-full object-cover" data-alt="A historic-style, high-quality photograph of the Barry brothers, Ibrahima and Abdoulaye, shown in a scholarly setting with books and script sketches. The lighting is warm and intellectual, capturing a moment of profound cultural contribution. The overall aesthetic is academic and respectful, utilizing the Indigo Professional Educational palette of deep indigos and soft whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzpLqG7eL0yFh3752123j6QG8iTkPAa2FHyevwELf9z7WGb_TvYLH-5-5Rpk3npZgUpDfeAapfUBStLV_qDdYrUxX0I0GJRtyJE9tgK3LBJAmHuGEHi1z32e7kSvL8oNowlEP7kDR_2I7zoz_xBw41lj6_WjqHcR1ET5J6IFHnUfwW972RIbRx4D3hkwPNG7l8BfJCfQZdTkl0SoviYBq5WvEJF2MwnawnLUckgBwhqam2WvifHDGpMd3pI5nnnEVz3wz_bdH3tr4X">
+</div>
+</div>
+</div>
+</section>
+<!-- Core Technicals: Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Writing Direction -->
+<div class="p-8 rounded-xl bg-surface border border-outline-variant flex flex-col items-center text-center space-y-4 group hover:border-primary transition-all">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="format_text_direction_rtl">format_text_direction_rtl</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Writing Direction</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            ADLaM is written from **Right-to-Left**, following the tradition of many regional scripts while introducing its own unique phonetic structures.
+                        </p>
+<div class="flex gap-2 font-adlam-display text-adlam-display text-primary pt-4">
+<span class="">𞤀</span><span class="">𞤄</span><span class="">𞤅</span>
+</div>
+</div>
+<!-- Script Type -->
+<div class="p-8 rounded-xl bg-surface border border-outline-variant flex flex-col items-center text-center space-y-4 group hover:border-primary transition-all">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="font_download">font_download</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Script Type</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            It is a true **Alphabet**, where each vowel and consonant has its own distinct character, ensuring complete phonetic clarity.
+                        </p>
+<div class="flex gap-2 font-adlam-display text-adlam-display text-tertiary pt-4">
+<span class="">𞤥</span><span class="">𞤦</span><span class="">𞤧</span>
+</div>
+</div>
+</section>
+<!-- Key Features Section -->
+<section class="pt-base border-t border-outline-variant space-y-8">
+<div class="text-center space-y-2">
+<h2 class="font-headline-md text-headline-md text-primary">Key Features &amp; Impact</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Modernizing a language for the digital age.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Education -->
+<div class="flex flex-col items-center text-center space-y-3">
+<span class="material-symbols-outlined text-3xl text-tertiary" data-icon="school">school</span>
+<span class="font-bold text-on-surface">Educational Impact</span>
+<p class="text-label-md font-label-md text-on-surface-variant">Empowering literacy across Guinea and the Fulani diaspora.</p>
+</div>
+<!-- Cultural Preservation -->
+<div class="flex flex-col items-center text-center space-y-3">
+<span class="material-symbols-outlined text-3xl text-tertiary" data-icon="auto_stories">auto_stories</span>
+<span class="font-bold text-on-surface">Cultural Preservation</span>
+<p class="text-label-md font-label-md text-on-surface-variant">Ensuring the Fulfulde language survives in the digital era.</p>
+</div>
+<!-- Unity -->
+<div class="flex flex-col items-center text-center space-y-3">
+<span class="material-symbols-outlined text-3xl text-tertiary" data-icon="groups">groups</span>
+<span class="font-bold text-on-surface">Unity</span>
+<p class="text-label-md font-label-md text-on-surface-variant">Connecting millions of Pular speakers through a shared identity.</p>
+</div>
+</div>
+</section>
+<!-- Decorative Mirror Image of Original Design Pattern -->
+
+</div>
+</main>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col gap-base p-4 h-full w-64 bg-surface-container-low border-l border-outline-variant rtl sticky top-16 h-[calc(100vh-64px)] overflow-y-auto">
+<div class="mb-6 px-3">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">A</div>
+<div>
+<h4 class="text-label-md font-label-md font-black text-on-surface">ADLaM Basics</h4>
+<p class="text-label-md font-label-md text-on-surface-variant opacity-70">Module 1</p>
+</div>
+</div>
+<button class="w-full mt-2 bg-primary dark:bg-primary text-on-primary rounded-lg py-2 text-label-md font-label-md hover:opacity-90 transition-all cursor-pointer active:scale-95">
+                    Resume Lesson
+                </button>
+</div>
+<!-- SideNav Links -->
+<div class="space-y-1">
+<!-- Active Item -->
+<div class="flex items-center gap-4 bg-primary text-on-primary rounded-lg p-3 cursor-pointer transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="text-label-md font-label-md">Writing System</span>
+</div>
+<!-- Inactive Items -->
+<div class="flex items-center gap-4 text-on-surface-variant p-3 cursor-pointer hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="font_download">font_download</span>
+<span class="text-label-md font-label-md">Alphabet</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant p-3 cursor-pointer hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="record_voice_over">record_voice_over</span>
+<span class="text-label-md font-label-md">Vowels</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant p-3 cursor-pointer hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+<span class="text-label-md font-label-md">Consonants</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant p-3 cursor-pointer hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="pin">pin</span>
+<span class="text-label-md font-label-md">Numerals</span>
+</div>
+</div>
+</aside>
+</div>
+<!-- Floating Action Button (FAB) - Semantic Logic: Rendered for Primary Lesson Home -->
+<div class="fixed bottom-8 left-8 md:right-auto md:left-margin-desktop z-40">
+<button class="w-14 h-14 rounded-full bg-tertiary text-on-tertiary shadow-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-transform group">
+<span class="material-symbols-outlined text-3xl" data-icon="help">help</span>
+<span class="absolute right-16 bg-surface p-2 rounded-lg border border-outline-variant shadow-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-label-md font-label-md text-on-surface pointer-events-none">Get Help</span>
+</button>
+</div>
+
+
+
+</body></html>
