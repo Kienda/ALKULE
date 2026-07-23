@@ -11,8 +11,11 @@
     "dev:next": "next dev",
     "build": "next build",
     "start": "node Backend/run.mjs",
+    "test:firebase": "node Backend/firebase.test.mjs",
     "test:api": "node Backend/test-runner.mjs",
+    "test": "node Backend/firebase.test.mjs && node Backend/test-runner.mjs",
     "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "db:migrate": "prisma migrate dev",
     "db:generate": "prisma generate",
     "bootstrap-owner": "node Backend/cli.mjs bootstrap-owner"
@@ -21,6 +24,7 @@
     "@prisma/client": "6.19.3",
     "dotenv": "17.4.2",
     "express": "^5.2.1",
+    "firebase-admin": "14.2.0",
     "next": "^16.2.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -38,6 +42,8 @@
   "allowScripts": {
     "prisma@6.19.3": true,
     "@prisma/client@6.19.3": true,
-    "@prisma/engines@6.19.3": true
+    "@prisma/engines@6.19.3": true,
+    "@firebase/util@1.15.1": true,
+    "protobufjs@7.6.5": true
   }
 }

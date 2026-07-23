@@ -1,0 +1,21 @@
+rules_version = '2';
+
+// Alkule Firebase Storage security rules.
+//
+// Uploads and downloads of protected content go through the trusted backend,
+// which validates role, resource ownership, MIME type, extension, and size, then
+// uses the Admin SDK (which BYPASSES these rules) to store objects under
+// server-controlled paths. The browser therefore has no direct Storage access by
+// default.
+//
+// Do not open this up with `allow read, write: if true;`. If a specific public
+// asset path (e.g. marketing images) must be world-readable, add a narrow
+// read-only rule for that exact prefix and document it in docs/STORAGE.md.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
