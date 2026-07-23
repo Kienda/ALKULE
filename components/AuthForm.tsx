@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { getFirebaseAuth, isFirebaseClientConfigured } from "@/lib/firebase-client";
 import { authedFetch } from "@/lib/api-client";
+import GoogleSignInButton from "@/components/GoogleSignInButton";
 
 function friendlyError(code: string): string {
   switch (code) {
@@ -118,6 +119,13 @@ export default function AuthForm({ mode }: { mode: "login" | "signup" }) {
       <p className="min-h-6 text-sm text-indigo-brand" role="status">
         {message}
       </p>
+
+      <div className="flex items-center gap-3 text-xs text-muted" aria-hidden="true">
+        <span className="h-px flex-1 bg-border" />
+        or
+        <span className="h-px flex-1 bg-border" />
+      </div>
+      <GoogleSignInButton redirectTo="/dashboard" />
     </form>
   );
 }
