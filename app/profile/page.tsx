@@ -1,1 +1,11 @@
-import Link from"next/link";export const metadata={title:"Profile"};export default function Page(){return <div className="container-page py-14"><p className="eyebrow">Account area</p><h1 className="section-title mt-2">Profile</h1><div className="card mt-8 max-w-xl p-7"><h2 className="text-xl font-bold">No signed-in profile</h2><p className="mt-3 text-muted">Profile settings and saved learning require future authentication.</p><div className="mt-6 flex gap-3"><Link href="/login" className="btn-secondary">Log in</Link><Link href="/signup" className="btn-primary">Create account</Link></div></div></div>}
+import ProfileClient from "@/components/ProfileClient";
+export const metadata = { title: "Profile" };
+export default function Page() {
+  return (
+    <div className="container-page py-14">
+      <p className="eyebrow">Account area</p>
+      <h1 className="section-title mt-2">Profile</h1>
+      <ProfileClient />
+    </div>
+  );
+}

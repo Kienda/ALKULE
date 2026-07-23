@@ -43,8 +43,25 @@ is the gateway. If a specific public prefix (e.g. `marketing/`) must be
 world-readable, add a narrow read-only rule for exactly that prefix and note it
 here.
 
-## Status
-⏳ Not yet wired into an upload flow — no upload UI exists in the current product
-shell. The bucket (`alkule.firebasestorage.app`) and access path
-(`storageBucket()` in `Backend/firebase-admin.mjs`) are verified and ready. The
-service-account JSON must never be uploaded to Storage.
+## Implemented
+- `Backend/storage.mjs` — the pipeline: `validateUpload` (magic-byte sniff so a
+  spoofed `Content-Type` cannot pass; size + blocked-extension checks),
+  `buildObjectPath` (server-generated filename, identifier sanitization, traversal
+  guard), `uploadObject`, `signedReadUrl` (private reads), `deleteObject` /
+  `deletePrefix`.
+- **Avatar** (self-owned) is live end-to-end:
+  - `POST /api/uploads/avatar` (multipart, `requireAuth`) — validates, stores at
+    `users/{uid}/avatar/<generated>.<ext>`, records `avatarPath` on the profile,
+    returns a signed URL. Max 2 MB; PNG/JPEG/WebP only.
+  - `GET /api/uploads/avatar` — returns a fresh signed URL.
+  - Frontend: `components/ProfileClient.tsx` on `/profile` (upload + preview).
+- Tests: `npm run test:storage` (12 offline assertions incl. spoof + traversal)
+  and the live `npm run test:e2e` (upload → signed URL → spoof-rejection → cleanup).
+
+## Next (needs resource ownership models)
+Course/lesson/assignment/etc. uploads: add each as a purpose in `storage.mjs`
+`PURPOSES` with a role check (e.g. instructor) and an **ownership** check (e.g. the
+instructor owns `courseId`) once those Firestore collections exist. The pipeline
+and rules already support them; only the per-purpose authorization is pending.
+
+The service-account JSON must never be uploaded to Storage.

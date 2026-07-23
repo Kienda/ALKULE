@@ -22,6 +22,7 @@ function shapeProfile(uid, data) {
     status: data.status ?? "active",
     preferredLocale: data.preferredLocale ?? "en",
     roles: Array.isArray(data.roles) && data.roles.length ? data.roles : ["learner"],
+    avatarPath: data.avatarPath ?? null,
     createdAt: data.createdAt?.toDate?.().toISOString?.() ?? null,
     updatedAt: data.updatedAt?.toDate?.().toISOString?.() ?? null,
   };
