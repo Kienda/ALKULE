@@ -1,4 +1,36 @@
-# Alkule Phase 1 implementation status
+# Alkule implementation status
+
+> **Update (Phase 1 — PostgreSQL, RBAC, owner bootstrap).** The backend now
+> persists to **PostgreSQL via Prisma** instead of the previous
+> `Backend/storage/data.json` flat file. Authentication, five-role RBAC with
+> granular admin permissions, ownership/owner-protection checks, an idempotent
+> owner-bootstrap CLI, and an append-only audit log are implemented and covered
+> by integration tests running against a real Postgres test database. Deployment
+> target remains **Railway** (AWS is out of scope). See
+> `docs/IMPLEMENTATION_PLAN.md` and `docs/DATABASE_SCHEMA.md`.
+>
+> **What changed since the original Phase 1 doc below:**
+> - `Backend/store.mjs` (JSON file store) and `Backend/storage/` removed.
+> - New: `Backend/db.mjs` (Prisma client), `Backend/rbac.mjs` (auth/RBAC
+>   middleware), `Backend/audit.mjs`, `Backend/cli.mjs` (owner bootstrap),
+>   `Backend/test-runner.mjs`, `prisma/schema.prisma` + migration.
+> - `Backend/api.mjs` rewritten on Prisma; existing endpoint contracts preserved
+>   (health, courses, signup, login, logout, me, dashboard, typing progress,
+>   newsletter) plus additive `roles`/`adminPermissions`/`status` user fields and
+>   new owner/admin endpoints.
+> - Sessions now carry `sessionVersion` + `authTime`; changing a user's role or
+>   status revokes their existing sessions; sensitive owner actions require
+>   recent re-authentication.
+> - Setup: `npm run db:migrate`, then
+>   `npm run bootstrap-owner -- --email=owner@example.com`. Tests: `npm run test:api`
+>   (needs `TEST_DATABASE_URL`).
+>
+> The historical Phase 1 (frontend consolidation) notes below remain accurate for
+> the frontend and are retained for context.
+
+---
+
+# Alkule Phase 1 (frontend consolidation) status
 
 ## Completed frontend scope
 

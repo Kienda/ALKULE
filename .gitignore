@@ -11,3 +11,15 @@ instance/
 Backend/storage/data.json
 __pycache__/
 .design
+Backend/secrets
+backend/secrets/
+# Firebase / Google service-account credentials — never commit these.
+**/*service-account*.json
+**/*serviceAccount*.json
+**/*firebase-adminsdk*.json
+**/*-adminsdk-*.json
+.env.*
+!.env.example
+.agents
+# Claude Code local files
+.claude/
