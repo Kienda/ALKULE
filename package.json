@@ -12,18 +12,21 @@
     "build": "next build",
     "start": "node Backend/run.mjs",
     "test:firebase": "node Backend/firebase.test.mjs",
+    "test:e2e": "node Backend/firebase-e2e.test.mjs",
     "test:api": "node Backend/test-runner.mjs",
     "test": "node Backend/firebase.test.mjs && node Backend/test-runner.mjs",
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
+    "bootstrap-owner": "node Backend/firebase-cli.mjs bootstrap-owner",
     "db:migrate": "prisma migrate dev",
     "db:generate": "prisma generate",
-    "bootstrap-owner": "node Backend/cli.mjs bootstrap-owner"
+    "bootstrap-owner:postgres": "node Backend/cli.mjs bootstrap-owner"
   },
   "dependencies": {
     "@prisma/client": "6.19.3",
     "dotenv": "17.4.2",
     "express": "^5.2.1",
+    "firebase": "12.16.0",
     "firebase-admin": "14.2.0",
     "next": "^16.2.10",
     "react": "^18.3.1",
