@@ -6,14 +6,20 @@
  * Firestore. The prior Postgres/Prisma router (Backend/api.mjs) is parked.
  */
 import express from "express";
+import multer from "multer";
 import { courses } from "./catalog.mjs";
 import { isFirebaseConfigured, firestore, FieldValue } from "./firebase-admin.mjs";
 import { attachProfile, requireAuth, requireRole } from "./firebase-rbac.mjs";
 import { getOrCreateProfile, getProfile, updateProfileFields, countActiveOwners } from "./firestore-users.mjs";
+import { validateUpload, buildObjectPath, uploadObject, signedReadUrl } from "./storage.mjs";
 
 const router = express.Router();
 router.use(express.json({ limit: "100kb" }));
 router.use(attachProfile);
+
+// Multipart uploads are held in memory, validated, then streamed to Storage.
+// The hard cap here is a backstop; per-purpose limits live in storage.mjs.
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 6 * 1024 * 1024, files: 1 } });
 
 router.get("/health", (_req, res) =>
   res.json({ ok: true, service: "alkule-api", firebase: isFirebaseConfigured(), time: new Date().toISOString() })
@@ -101,6 +107,44 @@ router.post("/newsletter", async (req, res) => {
   res.status(201).json({ message: "You are on the Alkule update list." });
 });
 
+// ---- Protected uploads (Firebase Storage via the trusted backend) ----
+//
+// Avatars are self-owned: the object path is derived from the verified uid, so a
+// user can only ever write their own avatar. Course/lesson uploads will add role
+// + ownership checks on top of the same storage.mjs pipeline.
+
+router.post("/uploads/avatar", requireAuth, upload.single("file"), async (req, res, next) => {
+  try {
+    const ext = validateUpload("avatar", req.file);
+    const objectPath = buildObjectPath("avatar", { uid: req.firebaseUser.uid }, ext);
+    await uploadObject({
+      objectPath,
+      buffer: req.file.buffer,
+      contentType: req.file.mimetype,
+      metadata: { uid: req.firebaseUser.uid, purpose: "avatar" },
+    });
+    await firestore()
+      .collection("users")
+      .doc(req.firebaseUser.uid)
+      .set({ avatarPath: objectPath, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+    const url = await signedReadUrl(objectPath);
+    res.status(201).json({ avatarPath: objectPath, url });
+  } catch (error) {
+    if (error?.status) return res.status(error.status).json({ error: error.publicMessage });
+    next(error);
+  }
+});
+
+router.get("/uploads/avatar", requireAuth, async (req, res, next) => {
+  try {
+    if (!req.profile.avatarPath) return res.json({ url: null });
+    const url = await signedReadUrl(req.profile.avatarPath);
+    res.json({ url });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // ---- Owner/admin: list users (roles enforced server-side) ----
 
 router.get("/owner/users", requireRole("owner", "admin"), async (_req, res) => {
@@ -138,6 +182,12 @@ router.patch("/owner/users/:uid/roles", requireRole("owner"), async (req, res) =
 });
 
 router.use((error, _req, res, _next) => {
+  // Multer surfaces upload problems (e.g. file too large) as MulterError.
+  if (error?.name === "MulterError") {
+    const status = error.code === "LIMIT_FILE_SIZE" ? 413 : 400;
+    return res.status(status).json({ error: "Upload rejected: " + error.message });
+  }
+  if (error?.status) return res.status(error.status).json({ error: error.publicMessage || "Request failed." });
   console.error("[firebase-api]", error?.message || error);
   res.status(500).json({ error: "The server could not complete this request." });
 });

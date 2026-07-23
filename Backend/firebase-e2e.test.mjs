@@ -1,13 +1,14 @@
 /**
  * End-to-end test of the Firebase-backed API against the LIVE Firebase project.
  *
- * It creates an ephemeral user + a real ID token (via a custom-token exchange, so
- * it does not depend on the Email/Password provider being enabled yet), exercises
- * the auth/session, RBAC, progress, and owner-bootstrap flows, then DELETES the
- * user and its Firestore documents. Nothing is left behind.
+ * It creates an ephemeral user, signs in via the REAL Email/Password provider to
+ * get an ID token (falling back to a custom-token exchange if that provider is
+ * off), then exercises auth/session, RBAC, progress, avatar upload, and owner
+ * bootstrap — and finally DELETES the user, its Firestore docs, and its uploaded
+ * Storage objects. Nothing is left behind.
  *
  * Skips cleanly (exit 0) when Firebase or the Web API key is unavailable, or when
- * the custom-token exchange is not permitted, so CI without credentials passes.
+ * no ID token can be minted, so CI without credentials passes.
  */
 import "dotenv/config";
 import assert from "node:assert/strict";
@@ -15,6 +16,7 @@ import express from "express";
 import api from "./firebase-api.mjs";
 import { adminAuth, firestore, isFirebaseConfigured } from "./firebase-admin.mjs";
 import { grantOwnerByEmail } from "./firestore-users.mjs";
+import { deletePrefix } from "./storage.mjs";
 
 const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 if (!isFirebaseConfigured() || !apiKey) {
@@ -22,26 +24,32 @@ if (!isFirebaseConfigured() || !apiKey) {
   process.exit(0);
 }
 
-async function exchangeCustomTokenForIdToken(customToken) {
-  const res = await fetch(
-    `https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=${apiKey}`,
-    {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ token: customToken, returnSecureToken: true }),
-    }
-  );
+async function identityToolkit(method, payload) {
+  const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:${method}?key=${apiKey}`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ ...payload, returnSecureToken: true }),
+  });
   const data = await res.json();
   if (!res.ok) {
-    const reason = data?.error?.message || `HTTP ${res.status}`;
-    const err = new Error(reason);
-    err.reason = reason;
+    const err = new Error(data?.error?.message || `HTTP ${res.status}`);
+    err.reason = data?.error?.message || `HTTP ${res.status}`;
     throw err;
   }
   return data.idToken;
 }
 
-const email = `e2e-${Date.now()}@alkule-e2e.invalid`;
+const signInWithPassword = (email, password) => identityToolkit("signInWithPassword", { email, password });
+const exchangeCustomTokenForIdToken = (token) => identityToolkit("signInWithCustomToken", { token });
+
+// A real 1x1 PNG (valid magic bytes) for the upload round-trip.
+const PNG_1x1 = Buffer.from(
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==",
+  "base64"
+);
+
+const email = `e2e-${Date.now()}@example.com`;
+const password = "E2e-Test-Password-123!";
 let uid = null;
 const app = express();
 app.use("/api", api);
@@ -52,17 +60,25 @@ const auth = (t) => ({ authorization: `Bearer ${t}`, "content-type": "applicatio
 
 let skipped = false;
 try {
-  const record = await adminAuth().createUser({ email, displayName: "E2E Tester" });
+  const record = await adminAuth().createUser({ email, password, displayName: "E2E Tester" });
   uid = record.uid;
 
   let idToken;
+  let authPath = "";
   try {
-    const customToken = await adminAuth().createCustomToken(uid);
-    idToken = await exchangeCustomTokenForIdToken(customToken);
-  } catch (e) {
-    skipped = true;
-    console.log(`Firebase e2e test SKIPPED: could not mint an ID token (${e.reason || e.message}).`);
-    console.log("Enable a sign-in method / allow the Identity Toolkit API for the Web key, then re-run.");
+    // Real production path: Email/Password sign-in.
+    idToken = await signInWithPassword(email, password);
+    authPath = "email/password";
+  } catch {
+    try {
+      // Fallback if Email/Password is not enabled in this project.
+      idToken = await exchangeCustomTokenForIdToken(await adminAuth().createCustomToken(uid));
+      authPath = "custom-token";
+    } catch (e) {
+      skipped = true;
+      console.log(`Firebase e2e test SKIPPED: could not mint an ID token (${e.reason || e.message}).`);
+      console.log("Enable a sign-in method / allow the Identity Toolkit API for the Web key, then re-run.");
+    }
   }
 
   if (!skipped) {
@@ -98,6 +114,26 @@ try {
     assert.equal(body.progress.score, 42);
     assert.equal(body.user.name, "E2E Tester");
 
+    // Avatar upload round-trip (multipart → Storage → signed URL).
+    let form = new FormData();
+    form.append("file", new Blob([PNG_1x1], { type: "image/png" }), "avatar.png");
+    res = await fetch(`${base}/uploads/avatar`, { method: "POST", headers: { authorization: `Bearer ${idToken}` }, body: form });
+    assert.equal(res.status, 201, "avatar upload should succeed");
+    body = await res.json();
+    assert.match(body.avatarPath, new RegExp(`^users/${uid}/avatar/`));
+    assert.ok(typeof body.url === "string" && body.url.startsWith("http"), "a signed URL is returned");
+
+    // A non-image masquerading as PNG is rejected by the magic-byte check.
+    form = new FormData();
+    form.append("file", new Blob([Buffer.from("not really an image")], { type: "image/png" }), "x.png");
+    res = await fetch(`${base}/uploads/avatar`, { method: "POST", headers: { authorization: `Bearer ${idToken}` }, body: form });
+    assert.equal(res.status, 400, "spoofed image upload should be rejected");
+
+    // The stored avatar is retrievable as a signed URL.
+    res = await fetch(`${base}/uploads/avatar`, { headers: auth(idToken) });
+    body = await res.json();
+    assert.ok(body.url, "GET /uploads/avatar returns a signed URL");
+
     // Owner bootstrap grants owner; the owner route is now allowed (roles are read
     // from Firestore, not the token).
     await grantOwnerByEmail(email);
@@ -107,7 +143,8 @@ try {
     assert.ok(body.users.some((u) => u.uid === uid));
 
     console.log(
-      "Firebase e2e tests passed: 401 gate, session+profile, learner RBAC (403), progress persistence, owner bootstrap (live project, cleaned up)."
+      `Firebase e2e tests passed (auth via ${authPath}): 401 gate, session+profile, learner RBAC (403), ` +
+        "progress persistence, avatar upload + signed URL, spoof rejection, owner bootstrap (live project, cleaned up)."
     );
   }
 } finally {
@@ -121,6 +158,9 @@ try {
     await firestore().collection("typingProgress").doc(uid).delete();
   } catch {
     /* ignore */
+  }
+  if (uid) {
+    await deletePrefix(`users/${uid}`);
   }
   if (uid) {
     try {

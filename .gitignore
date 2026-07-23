@@ -20,3 +20,6 @@ backend/secrets/
 **/*-adminsdk-*.json
 .env.*
 !.env.example
+.agents
+# Claude Code local files
+.claude/
