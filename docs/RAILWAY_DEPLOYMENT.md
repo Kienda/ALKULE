@@ -37,10 +37,10 @@ The production domain is managed in **Cloudflare** and points at the Railway
 service. For Firebase to work through it:
 
 1. **Firebase authorized domains (required).** Firebase console → Authentication →
-   Settings → **Authorized domains** → add the production domain (e.g.
-   `alkule.com` and any `www`/subdomain used). Without this, browser sign-in fails
-   in production with `auth/unauthorized-domain`. `localhost` and
-   `alkule.firebaseapp.com` are allowed by default; the custom domain is not.
+   Settings → **Authorized domains** → add **`alkule.com`** and **`www.alkule.com`**.
+   Without this, browser sign-in fails in production with
+   `auth/unauthorized-domain`. `localhost` and `alkule.firebaseapp.com` are allowed
+   by default; the custom domain is not.
 2. **Cloudflare SSL/TLS mode = Full (strict).** Railway terminates TLS with a
    valid cert, so "Flexible" causes redirect loops / mixed content. Use Full
    (strict).
