@@ -1,7 +1,10 @@
 import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
 
-const production = process.env.NODE_ENV === "production";
+// `npm start` passes --production explicitly. Do not rely on a hosting
+// platform to inject NODE_ENV, otherwise a deployment may start `next dev`
+// and fail its health check while compiling the first request.
+const production = process.argv.includes("--production") || process.env.NODE_ENV === "production";
 const frontendPort = process.env.PORT || "3000";
 const require = createRequire(import.meta.url);
 const nextCli = require.resolve("next/dist/bin/next");

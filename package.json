@@ -10,7 +10,7 @@
     "dev": "node Backend/run.mjs",
     "dev:next": "next dev",
     "build": "next build",
-    "start": "node Backend/run.mjs",
+    "start": "node Backend/run.mjs --production",
     "test:firebase": "node Backend/firebase.test.mjs",
     "test:storage": "node Backend/storage.test.mjs",
     "test:auth": "node lib/auth-errors.test.mjs",
