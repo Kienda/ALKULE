@@ -10,6 +10,7 @@ export default function LanguageSwitcher() {
     <label className="flex items-center gap-1 text-sm">
       <span className="sr-only">Language</span>
       <select
+        name="locale"
         value={locale}
         onChange={(e) => setLocale(e.target.value as Locale)}
         aria-label="Language and script"

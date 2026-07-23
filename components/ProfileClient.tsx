@@ -95,6 +95,8 @@ export default function ProfileClient() {
           <input
             ref={fileInput}
             type="file"
+            name="avatar"
+            id="avatar-upload"
             accept="image/png,image/jpeg,image/webp"
             onChange={onFile}
             disabled={busy}
