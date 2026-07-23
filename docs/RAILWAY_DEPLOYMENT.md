@@ -32,11 +32,39 @@ Uploaded files go to **Firebase Storage**, not the container filesystem
 migration, must point at a managed Postgres (Railway plugin or external), never
 local files.
 
+## Custom domain: Cloudflare → Railway
+The production domain is managed in **Cloudflare** and points at the Railway
+service. For Firebase to work through it:
+
+1. **Firebase authorized domains (required).** Firebase console → Authentication →
+   Settings → **Authorized domains** → add the production domain (e.g.
+   `alkule.com` and any `www`/subdomain used). Without this, browser sign-in fails
+   in production with `auth/unauthorized-domain`. `localhost` and
+   `alkule.firebaseapp.com` are allowed by default; the custom domain is not.
+2. **Cloudflare SSL/TLS mode = Full (strict).** Railway terminates TLS with a
+   valid cert, so "Flexible" causes redirect loops / mixed content. Use Full
+   (strict).
+3. **Do not cache the API.** Ensure `/api/*` is not cached by Cloudflare (auth
+   token requests are POST/GET with `Authorization` and must reach Railway every
+   time). Static assets can be cached normally. The `Authorization: Bearer` header
+   passes through Cloudflare unchanged — no action needed there.
+4. **Disable Rocket Loader for the app** (Cloudflare → Speed → Optimization).
+   Rocket Loader defers/injects `<script>` handling and can break the Firebase Web
+   SDK's initialization. Auto-Minify JS is usually fine but disable it if you see
+   SDK errors.
+5. **Railway health check is internal.** Railway probes the container directly at
+   `/api/health`, not through Cloudflare, so proxy settings don't affect it.
+
+`NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` stays `alkule.firebaseapp.com` (Firebase's own
+auth handler domain) — do **not** change it to the custom domain unless you have
+explicitly set up custom-domain hosting of the auth handler.
+
 ## Do not
 - Create a second Railway service unless the architecture requires it.
 - Change the build/start commands or the health-check path.
 - Expose server Firebase secrets via `NEXT_PUBLIC_`.
 - Commit `.env` or the service-account key.
+- Set Cloudflare SSL to "Flexible", or leave `/api/*` cached.
 
 ## Pre-deploy checklist
 `npm run lint` · `npm run test:firebase` · (`npm run test:api` if Postgres is
